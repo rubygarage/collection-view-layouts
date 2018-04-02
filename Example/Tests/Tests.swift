@@ -2,7 +2,7 @@
 
 import Quick
 import Nimble
-import collection-view-layouts
+import collection_view_layouts
 
 class TableOfContentsSpec: QuickSpec {
     override func spec() {
