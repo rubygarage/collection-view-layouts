@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   
-  s.source_files = 'collection_flow_layout/Classes/*.swift'
+  s.source_files = 'collection-view-layouts/Classes/*.swift'
   
   s.subspec 'TagsLayout' do |tags_layout|
     tags_layout.source_files = 'collection-view-layouts/Classes/TagsStyleFlowLayout/*.swift'
