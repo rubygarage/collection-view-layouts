@@ -36,4 +36,8 @@ Pod::Spec.new do |s|
   s.subspec 'InstagramLayout' do |instagram_layout|
     instagram_layout.source_files = 'collection-view-layouts/Classes/InstagramStyleFlowLayout/*.swift'
   end
+
+  s.subspec 'FlipboardLayout' do |flipboard_layout|
+    flipboard_layout.source_files = 'collection-view-layouts/Classes/FlipboardStyleFlowLayout/*.swift'
+  end
 end
