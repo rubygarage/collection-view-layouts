@@ -18,45 +18,48 @@ public class FlipboardStyleFlowLayout: ContentDynamicLayout {
         
         contentSize.width = contentCollectionView.frame.size.width
 
-        var yOffset: CGFloat = 0
+        var yOffset: CGFloat = contentPadding.vertical
         
-        let cellWidth = contentCollectionView.frame.size.width / CGFloat(kColumnsCount)
+        let cellWidth = (contentCollectionView.frame.size.width - 2 * (contentPadding.horizontal + cellsPadding.horizontal)) / CGFloat(kColumnsCount)
         let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
         
         for item in 0 ..< itemsCount  {
             let indexPath = IndexPath(item: item, section: 0)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
-            
             if indexPath.row % kCellsInSection == 0 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: cellWidth * 2, height: cellWidth)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellWidth * 2 + cellsPadding.horizontal, height: cellWidth)
+                
+                yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + cellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 1 {
-                attributes.frame = CGRect(x: cellWidth * 2, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: (cellWidth + cellsPadding.horizontal) * 2 + contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
                 
-                yOffset += cellWidth
+                yOffset += cellWidth + cellsPadding.vertical
             } else if indexPath.row % kCellsInSection == 2 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
+                yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + cellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 3 {
-                attributes.frame = CGRect(x: cellWidth, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: (cellWidth + cellsPadding.horizontal) + contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
+                yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + cellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 4 {
-                attributes.frame = CGRect(x: cellWidth * 2, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: (cellWidth + cellsPadding.horizontal) * 2 + contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
                 
-                yOffset += cellWidth
+                yOffset += cellWidth + cellsPadding.vertical
             } else if indexPath.row % kCellsInSection == 5 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
+                yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + cellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 6 {
-                attributes.frame = CGRect(x: cellWidth, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: (cellWidth + cellsPadding.horizontal) + contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
+                yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + cellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 7 {
-                attributes.frame = CGRect(x: cellWidth * 2, y: yOffset, width: cellWidth, height: cellWidth)
+                attributes.frame = CGRect(x: (cellWidth + cellsPadding.horizontal) * 2 + contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
                 
-                yOffset += cellWidth
+                yOffset += cellWidth + cellsPadding.vertical
             }
 
             addCachedLayoutAttributes(attributes: attributes)
         }
         
-        let addHeight = (itemsCount % 8 > 0) ? cellWidth : 0
-        
-        contentSize.height = yOffset + addHeight
+        contentSize.height = yOffset + contentPadding.vertical
     }
 }
