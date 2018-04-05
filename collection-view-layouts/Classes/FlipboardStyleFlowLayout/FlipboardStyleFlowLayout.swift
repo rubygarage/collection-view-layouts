@@ -28,11 +28,13 @@ public class FlipboardStyleFlowLayout: ContentDynamicLayout {
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
             if indexPath.row % kCellsInSection == 0 {
-                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellWidth * 2 + cellsPadding.horizontal, height: cellWidth)
+                let x = (contentAlign == .left) ? contentPadding.horizontal : (cellWidth + cellsPadding.horizontal + contentPadding.horizontal)
+                attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth * 2 + cellsPadding.horizontal, height: cellWidth)
                 
                 yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + cellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 1 {
-                attributes.frame = CGRect(x: (cellWidth + cellsPadding.horizontal) * 2 + contentPadding.horizontal, y: yOffset, width: cellWidth, height: cellWidth)
+                let x = (contentAlign == .left) ? (cellWidth + cellsPadding.horizontal) * 2 + contentPadding.horizontal : contentPadding.horizontal
+                attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth, height: cellWidth)
                 
                 yOffset += cellWidth + cellsPadding.vertical
             } else if indexPath.row % kCellsInSection == 2 {
