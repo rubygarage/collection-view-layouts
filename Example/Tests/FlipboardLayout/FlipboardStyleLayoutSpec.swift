@@ -11,9 +11,6 @@ import Nimble
 @testable import collection_view_layouts
 
 class FlipboardStyleLayoutSpec: QuickSpec {
-    private let kFlipboardFlowLayoutMaxItems: UInt32 = 40
-    private let kFlipboardFlowLayoutMinItems: UInt32 = 20
-    
     override func spec() {
         describe("Check flipboard flow layout") {
             it("should have default values") {
