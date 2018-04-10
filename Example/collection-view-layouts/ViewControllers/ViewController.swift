@@ -19,7 +19,7 @@ class ViewController: UIViewController, ContentDynamicLayoutDelegate {
     private var contentDataSource: ContentDataSource?
     private var dataItems = [String]()
     private var cellsSizes = [CGSize]()
-    private var flowItemsTitles = ["Tags Layout", "Pinterest Layout", "500px", "Instagram", "Flipboard"]
+    private var flowItemsTitles = ["Tags Layout", "Pinterest Layout", "500px", "Instagram", "Flipboard", "Facebook"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +73,8 @@ class ViewController: UIViewController, ContentDynamicLayoutDelegate {
             contentFlowLayout = InstagramStyleFlowLayout()
         } else if type == .flipboard {
             contentFlowLayout = FlipboardStyleFlowLayout()
+        } else if type == .facebook {
+            contentFlowLayout = FacebookStyleFlowLayout()
         }
 
         contentFlowLayout?.delegate = self
