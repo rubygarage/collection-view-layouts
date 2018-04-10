@@ -19,10 +19,10 @@ public class FacebookStyleFlowLayout: ContentDynamicLayout {
         
         contentSize.width = contentCollectionView.frame.size.width
         
-        var yOffset: CGFloat = 0
+        var yOffset: CGFloat = contentPadding.vertical
         
-        let largeCellWidth = contentCollectionView.frame.size.width / CGFloat(kLargeColumnsCount)
-        let smallCellWidth = contentCollectionView.frame.size.width / CGFloat(kSmallColumnsCount)
+        let largeCellWidth = (contentCollectionView.frame.size.width - 2 * contentPadding.horizontal) / CGFloat(kLargeColumnsCount)
+        let smallCellWidth = (contentCollectionView.frame.size.width - 2 * contentPadding.horizontal) / CGFloat(kSmallColumnsCount)
         
         let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
         
@@ -31,25 +31,25 @@ public class FacebookStyleFlowLayout: ContentDynamicLayout {
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
             if indexPath.row % kCellsInSection == 0 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: largeCellWidth, height: largeCellWidth)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: largeCellWidth, height: largeCellWidth)
                 yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + largeCellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 1 {
-                attributes.frame = CGRect(x: largeCellWidth, y: yOffset, width: largeCellWidth, height: largeCellWidth)
+                attributes.frame = CGRect(x: largeCellWidth + contentPadding.horizontal, y: yOffset, width: largeCellWidth, height: largeCellWidth)
                 yOffset += largeCellWidth
             } else if indexPath.row % kCellsInSection == 2 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: smallCellWidth, height: smallCellWidth)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: smallCellWidth, height: smallCellWidth)
                 yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + smallCellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 3 {
-                attributes.frame = CGRect(x: smallCellWidth, y: yOffset, width: smallCellWidth, height: smallCellWidth)
+                attributes.frame = CGRect(x: smallCellWidth + contentPadding.horizontal, y: yOffset, width: smallCellWidth, height: smallCellWidth)
                 yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + smallCellWidth : yOffset
             } else if indexPath.row % kCellsInSection == 4 {
-                attributes.frame = CGRect(x: smallCellWidth * 2, y: yOffset, width: smallCellWidth, height: smallCellWidth)
+                attributes.frame = CGRect(x: smallCellWidth * 2 + contentPadding.horizontal, y: yOffset, width: smallCellWidth, height: smallCellWidth)
                 yOffset += smallCellWidth
             }
             
             addCachedLayoutAttributes(attributes: attributes)
         }
         
-        contentSize.height = yOffset
+        contentSize.height = yOffset + contentPadding.vertical
     }
 }
