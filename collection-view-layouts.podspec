@@ -40,4 +40,8 @@ Pod::Spec.new do |s|
   s.subspec 'FlipboardLayout' do |flipboard_layout|
     flipboard_layout.source_files = 'collection-view-layouts/Classes/FlipboardStyleFlowLayout/*.swift'
   end
+
+  s.subspec 'FacebookLayout' do |facebook_layout|
+    facebook_layout.source_files = 'collection-view-layouts/Classes/FacebookStyleFlowLayout/*.swift'
+  end
 end
