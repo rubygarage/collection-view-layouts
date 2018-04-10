@@ -42,6 +42,8 @@
 		8C64D35A20723DF60049AD45 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C64D32220723B6F0049AD45 /* ContentCell.swift */; };
 		8C64D35B20723E090049AD45 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C64D32920723B6F0049AD45 /* Font.swift */; };
 		8C64D35C20723E170049AD45 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C64D32A20723B6F0049AD45 /* Color.swift */; };
+		8CB7FFF320776D3F00509F87 /* FlipboardStyleLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7FFF120776D2100509F87 /* FlipboardStyleLayoutSpec.swift */; };
+		8CB7FFF620776F0500509F87 /* FlipboardStyleFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7FFF420776EF300509F87 /* FlipboardStyleFlowLayout.swift */; };
 		A73B83C2F880BCBF26761C25 /* Pods_collection_view_layouts_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173055EDF02337440A240B65 /* Pods_collection_view_layouts_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		8C64D34520723D610049AD45 /* MatcherExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatcherExtension.swift; sourceTree = "<group>"; };
 		8C64D34720723D610049AD45 /* TagsFlowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsFlowDelegate.swift; sourceTree = "<group>"; };
 		8C64D34820723D610049AD45 /* TagsStyleFlowLayoutSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsStyleFlowLayoutSpec.swift; sourceTree = "<group>"; };
+		8CB7FFF120776D2100509F87 /* FlipboardStyleLayoutSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipboardStyleLayoutSpec.swift; sourceTree = "<group>"; };
+		8CB7FFF420776EF300509F87 /* FlipboardStyleFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipboardStyleFlowLayout.swift; sourceTree = "<group>"; };
 		9570D9509D87B8988F8D989D /* collection-view-layouts.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "collection-view-layouts.podspec"; path = "../collection-view-layouts.podspec"; sourceTree = "<group>"; };
 		9FD2DBD7F5118000B5A3F862 /* Pods-collection-view-layouts_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-collection-view-layouts_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-collection-view-layouts_Example/Pods-collection-view-layouts_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A86FAB7C4186882E81D7004E /* Pods-collection-view-layouts_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-collection-view-layouts_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-collection-view-layouts_Example/Pods-collection-view-layouts_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				8C64D34520723D610049AD45 /* MatcherExtension.swift */,
 				8C64D33B20723D610049AD45 /* ContentDynamicLayoutSpec.swift */,
 				8C64D33C20723D610049AD45 /* 500px */,
+				8CB7FFF020776D0000509F87 /* FlipboardLayout */,
 				8C64D34220723D610049AD45 /* InstagramLayout */,
 				8C64D33720723D610049AD45 /* PinterestLayout */,
 				8C64D34620723D610049AD45 /* TagsLayout */,
@@ -293,6 +298,15 @@
 				8C64D34820723D610049AD45 /* TagsStyleFlowLayoutSpec.swift */,
 			);
 			path = TagsLayout;
+			sourceTree = "<group>";
+		};
+		8CB7FFF020776D0000509F87 /* FlipboardLayout */ = {
+			isa = PBXGroup;
+			children = (
+				8CB7FFF120776D2100509F87 /* FlipboardStyleLayoutSpec.swift */,
+				8CB7FFF420776EF300509F87 /* FlipboardStyleFlowLayout.swift */,
+			);
+			path = FlipboardLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,9 +548,11 @@
 				8C64D35220723D610049AD45 /* InstagramStyleLayoutSpec.swift in Sources */,
 				8C64D35620723D610049AD45 /* TagsStyleFlowLayoutSpec.swift in Sources */,
 				8C64D35020723D610049AD45 /* 500pxStyleFlowLayoutSpec.swift in Sources */,
+				8CB7FFF320776D3F00509F87 /* FlipboardStyleLayoutSpec.swift in Sources */,
 				8C64D35A20723DF60049AD45 /* ContentCell.swift in Sources */,
 				8C64D35B20723E090049AD45 /* Font.swift in Sources */,
 				8C64D34C20723D610049AD45 /* ContentDynamicLayoutSpec.swift in Sources */,
+				8CB7FFF620776F0500509F87 /* FlipboardStyleFlowLayout.swift in Sources */,
 				8C64D34F20723D610049AD45 /* 500pxStyleDelegateMock.swift in Sources */,
 				8C64D35920723DE60049AD45 /* FlowLayoutTypes.swift in Sources */,
 				8C64D34A20723D610049AD45 /* PinterestFourElementsDelegateMock.swift in Sources */,
