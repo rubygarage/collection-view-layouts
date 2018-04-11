@@ -28,6 +28,8 @@ class CellSizeProvider {
                 size = CellSizeProvider.provideInstagramCellSize(item: item)
             } else if flowType == .flipboard {
                 size = CellSizeProvider.provideFlipboardCellSize(item: item)
+            } else if flowType == .facebook {
+                size = CellSizeProvider.provideFacebookCellSize(item: item)
             }
             
             cellSizes.append(size)
@@ -57,6 +59,10 @@ class CellSizeProvider {
     }
     
     private class func provideFlipboardCellSize(item: String) -> CGSize {
+        return CellSizeProvider.provideRandomCellSize(item: item)
+    }
+    
+    private class func provideFacebookCellSize(item: String) -> CGSize {
         return CellSizeProvider.provideRandomCellSize(item: item)
     }
     

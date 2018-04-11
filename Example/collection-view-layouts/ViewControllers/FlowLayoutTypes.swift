@@ -12,4 +12,5 @@ enum FlowLayoutType: Int {
     case px500
     case instagram
     case flipboard
+    case facebook
 }
