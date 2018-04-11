@@ -8,7 +8,8 @@ target 'collection-view-layouts_Example' do
     pod 'collection-view-layouts/InstagramLayout', :path => '../'
     pod 'collection-view-layouts/FlipboardLayout', :path => '../'
     pod 'collection-view-layouts/FacebookLayout', :path => '../'
-    
+    pod 'collection-view-layouts/FlickrLayout', :path => '../'
+
     target 'collection-view-layouts_Tests' do
         inherit! :search_paths
         
