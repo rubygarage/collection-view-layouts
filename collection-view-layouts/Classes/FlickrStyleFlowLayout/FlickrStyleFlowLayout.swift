@@ -21,34 +21,35 @@ public class FlickrStyleFlowLayout: ContentDynamicLayout {
         
         let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
         
-        var yOffset: CGFloat = 0
+        var yOffset: CGFloat = contentPadding.vertical
         
-        for item in 0 ..< itemsCount  {
+        for item in 0 ..< itemsCount {
             let indexPath = IndexPath(item: item, section: 0)
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
-            let smallCellHeight: CGFloat = contentCollectionView.frame.height / CGFloat(kRowsCount)
+            let smallCellHeight: CGFloat = (contentCollectionView.frame.height - 2 * contentPadding.vertical) / CGFloat(kRowsCount)
             let largeCellHeight: CGFloat = smallCellHeight * 2
-            let cellWidth = contentCollectionView.frame.width / 2
+            let cellWidth = (contentCollectionView.frame.width - 2 * contentPadding.horizontal) / 2
             let addCellHeight = contentCollectionView.frame.height / CGFloat(kRowsCount - 1)
+            let addCellWidth = contentCollectionView.frame.width - 2 * contentPadding.horizontal
             
             if indexPath.row % kCellsInSection == 0 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: cellWidth, height: smallCellHeight)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellWidth, height: smallCellHeight)
                 yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + smallCellHeight : yOffset
             } else if indexPath.row % kCellsInSection == 1 {
-                attributes.frame = CGRect(x: cellWidth, y: yOffset, width: cellWidth, height: largeCellHeight)
+                attributes.frame = CGRect(x: cellWidth + contentPadding.horizontal, y: yOffset, width: cellWidth, height: largeCellHeight)
                 yOffset = (indexPath.row + 1 == itemsCount) ? yOffset + largeCellHeight : yOffset + smallCellHeight
             } else if indexPath.row % kCellsInSection == 2 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: cellWidth, height: smallCellHeight)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellWidth, height: smallCellHeight)
                 yOffset += smallCellHeight
             } else if indexPath.row % kCellsInSection == 3 {
-                attributes.frame = CGRect(x: 0, y: yOffset, width: contentCollectionView.frame.width, height: addCellHeight)
+                attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: addCellWidth, height: addCellHeight)
                 yOffset += addCellHeight
             }
             
             addCachedLayoutAttributes(attributes: attributes)
         }
         
-        contentSize.height = yOffset
+        contentSize.height = yOffset + contentPadding.vertical
     }
 }
