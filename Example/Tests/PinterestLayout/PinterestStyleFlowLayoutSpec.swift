@@ -6,9 +6,9 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-import Quick
-import Nimble
 import Fakery
+import Nimble
+import Quick
 @testable import collection_view_layouts
 
 class PinterestStyleFlowLayoutSpec: QuickSpec {
