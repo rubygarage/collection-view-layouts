@@ -37,6 +37,82 @@ class FlickrStyleFlowLayoutSpec: QuickSpec {
                 expect(flickrFlowLayout.delegate).to(beNil())
             }
         }
+        
+        describe("Check flickr flow inner items") {
+            it("should have valid frames") {
+                let items = ["1", "2", "3", "4"]
+                let flickrFlowLayout = self.configureFlickrFlowLayout(items: items)
+                let attributes = flickrFlowLayout.cachedLayoutAttributes
+                
+                let smallCellHeight: CGFloat = UIScreen.main.bounds.height / 5
+                let largeCellHeight: CGFloat = smallCellHeight * 2
+                let cellWidth = UIScreen.main.bounds.width / 2
+                let addCellHeight = UIScreen.main.bounds.height / 4
+                let addCellWidth = UIScreen.main.bounds.width
+                
+                let firstCellAttributes = attributes[0]
+                let secondCellAttributes = attributes[1]
+                let thirdCellAttributes = attributes[2]
+                let fourthCellAttributes = attributes[3]
+                
+                expect(firstCellAttributes.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: cellWidth, height: smallCellHeight)))
+                expect(secondCellAttributes.frame).to(beCloseTo(CGRect(x: cellWidth, y: 0, width: cellWidth, height: largeCellHeight)))
+                expect(thirdCellAttributes.frame).to(beCloseTo(CGRect(x: 0, y: smallCellHeight, width: cellWidth, height: smallCellHeight)))
+                expect(fourthCellAttributes.frame).to(beCloseTo(CGRect(x: 0, y: largeCellHeight, width: addCellWidth, height: addCellHeight)))
+            }
+            
+            it("should have valid content paddings") {
+                let items = ["1", "2", "3", "4"]
+                let hPadding: CGFloat = 10
+                let vPadding: CGFloat = 10
+                let contentPadding = ItemsPadding(horizontal: hPadding, vertical: vPadding)
+                
+                let flickrFlowLayout = self.configureFlickrFlowLayout(contentPadding: contentPadding, items: items)
+                let attributes = flickrFlowLayout.cachedLayoutAttributes
+                
+                let smallCellHeight: CGFloat = (UIScreen.main.bounds.height - 2 * contentPadding.vertical) / 5
+                let largeCellHeight: CGFloat = smallCellHeight * 2
+                let cellWidth = (UIScreen.main.bounds.width - 2 * contentPadding.horizontal) / 2
+                let addCellHeight = (UIScreen.main.bounds.height - 2 * contentPadding.vertical) / 4
+                let addCellWidth = UIScreen.main.bounds.width - 2 * contentPadding.vertical
+                
+                let firstCellAttributes = attributes[0]
+                let secondCellAttributes = attributes[1]
+                let thirdCellAttributes = attributes[2]
+                let fourthCellAttributes = attributes[3]
+                
+                expect(firstCellAttributes.frame).to(beCloseTo(CGRect(x: hPadding, y: vPadding, width: cellWidth, height: smallCellHeight)))
+                expect(secondCellAttributes.frame).to(beCloseTo(CGRect(x: cellWidth + hPadding, y: vPadding, width: cellWidth, height: largeCellHeight)))
+                expect(thirdCellAttributes.frame).to(beCloseTo(CGRect(x: hPadding, y: smallCellHeight + vPadding, width: cellWidth, height: smallCellHeight)))
+                expect(fourthCellAttributes.frame).to(beCloseTo(CGRect(x: hPadding, y: largeCellHeight + vPadding, width: addCellWidth, height: addCellHeight)))
+            }
+            
+            it("should have valid cells paddings") {
+                let items = ["1", "2", "3", "4"]
+                let hPadding: CGFloat = 10
+                let vPadding: CGFloat = 10
+                let cellsPadding = ItemsPadding(horizontal: hPadding, vertical: vPadding)
+                
+                let flickrFlowLayout = self.configureFlickrFlowLayout(cellsPadding: cellsPadding, items: items)
+                let attributes = flickrFlowLayout.cachedLayoutAttributes
+                
+                let smallCellHeight: CGFloat = (UIScreen.main.bounds.height - cellsPadding.vertical) / 5
+                let largeCellHeight: CGFloat = smallCellHeight * 2 + cellsPadding.vertical
+                let cellWidth = (UIScreen.main.bounds.width - cellsPadding.horizontal) / 2
+                let addCellHeight = (UIScreen.main.bounds.height - cellsPadding.vertical) / 4
+                let addCellWidth = UIScreen.main.bounds.width
+                
+                let firstCellAttributes = attributes[0]
+                let secondCellAttributes = attributes[1]
+                let thirdCellAttributes = attributes[2]
+                let fourthCellAttributes = attributes[3]
+                
+                expect(firstCellAttributes.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: cellWidth, height: smallCellHeight)))
+                expect(secondCellAttributes.frame).to(beCloseTo(CGRect(x: cellWidth + cellsPadding.horizontal, y: 0, width: cellWidth, height: largeCellHeight)))
+                expect(thirdCellAttributes.frame).to(beCloseTo(CGRect(x: 0, y: smallCellHeight + cellsPadding.vertical, width: cellWidth, height: smallCellHeight)))
+                expect(fourthCellAttributes.frame).to(beCloseTo(CGRect(x: 0, y: largeCellHeight + cellsPadding.vertical, width: addCellWidth, height: addCellHeight)))
+            }
+        }
     }
     
     private func configureFlickrFlowLayout(contentPadding: ItemsPadding = ItemsPadding(), cellsPadding: ItemsPadding = ItemsPadding(), align: DynamicContentAlign = .left, items: [String]) -> FlickrStyleFlowLayout {
