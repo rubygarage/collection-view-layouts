@@ -30,6 +30,8 @@ class CellSizeProvider {
                 size = CellSizeProvider.provideFlipboardCellSize(item: item)
             } else if flowType == .facebook {
                 size = CellSizeProvider.provideFacebookCellSize(item: item)
+            } else if flowType == .flickr {
+                size = CellSizeProvider.provideFlickrCellSize(item: item)
             }
             
             cellSizes.append(size)
@@ -63,6 +65,10 @@ class CellSizeProvider {
     }
     
     private class func provideFacebookCellSize(item: String) -> CGSize {
+        return CellSizeProvider.provideRandomCellSize(item: item)
+    }
+    
+    private class func provideFlickrCellSize(item: String) -> CGSize {
         return CellSizeProvider.provideRandomCellSize(item: item)
     }
     
