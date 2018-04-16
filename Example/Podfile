@@ -1,0 +1,20 @@
+use_frameworks!
+
+target 'collection-view-layouts_Example' do
+    pod 'collection-view-layouts', :path => '../'
+    pod 'collection-view-layouts/TagsLayout', :path => '../'
+    pod 'collection-view-layouts/PinterestLayout', :path => '../'
+    pod 'collection-view-layouts/Px500Layout', :path => '../'
+    pod 'collection-view-layouts/InstagramLayout', :path => '../'
+    pod 'collection-view-layouts/FlipboardLayout', :path => '../'
+    pod 'collection-view-layouts/FacebookLayout', :path => '../'
+    pod 'collection-view-layouts/FlickrLayout', :path => '../'
+
+    target 'collection-view-layouts_Tests' do
+        inherit! :search_paths
+        
+        pod 'Quick', '~> 1.2.0'
+        pod 'Nimble', '~> 7.0.2'
+        pod 'Fakery', '~> 3.3'
+    end
+end
