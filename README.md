@@ -33,7 +33,7 @@ Collection view layouts is a set of custom flow layouts for iOS which imitate ge
 
 ## Overview
 * 7 popular flow-layouts for iOS collection view
-* Tags and Flipboard layouts supports left and right content align
+* Tags and Flipboard layouts support left and right content align
 * 500px has custom cells layout configuration
 * Three modes for instagram layout (default grid mode, one preview cell, regular preview cell)
 * Each layout can be configured with content and cells paddings separately
