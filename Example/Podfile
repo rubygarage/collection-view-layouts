@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'collection-view-layouts_Example' do
-    pod 'collection-view-layouts', :path => '../'
+    pod 'collection-view-layouts/Core', :path => '../'
     pod 'collection-view-layouts/TagsLayout', :path => '../'
     pod 'collection-view-layouts/PinterestLayout', :path => '../'
     pod 'collection-view-layouts/Px500Layout', :path => '../'
