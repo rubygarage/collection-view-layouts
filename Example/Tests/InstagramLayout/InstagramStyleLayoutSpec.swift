@@ -69,9 +69,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                     if attr.indexPath.row % 3 == 0 {
                         expect(attr.frame.origin.x).to(equal(0))
                     } else if attr.indexPath.row % 3 == 1 {
-                        expect(attr.frame.origin.x).to(equal(cellWidth))
+                        expect(attr.frame.origin.x).to(beCloseTo(cellWidth))
                     } else if attr.indexPath.row % 3 == 2 {
-                        expect(attr.frame.origin.x).to(equal(cellWidth * 2))
+                        expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2))
                         
                         rowCount += 1
                     }
@@ -95,11 +95,11 @@ class InstagramStyleLayoutSpec: QuickSpec {
                     expect(attr.frame.origin.y).to(beCloseTo(CGFloat(rowCount) * cellWidth + vPadding))
                     
                     if attr.indexPath.row % 3 == 0 {
-                        expect(attr.frame.origin.x).to(equal(hPadding))
+                        expect(attr.frame.origin.x).to(beCloseTo(hPadding))
                     } else if attr.indexPath.row % 3 == 1 {
-                        expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                        expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                     } else if attr.indexPath.row % 3 == 2 {
-                        expect(attr.frame.origin.x).to(equal(cellWidth * 2 + hPadding))
+                        expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2 + hPadding))
                         
                         rowCount += 1
                     }
@@ -125,9 +125,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                     if attr.indexPath.row % 3 == 0 {
                         expect(attr.frame.origin.x).to(equal(0))
                     } else if attr.indexPath.row % 3 == 1 {
-                        expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                        expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                     } else if attr.indexPath.row % 3 == 2 {
-                        expect(attr.frame.origin.x).to(equal((cellWidth + hPadding) * 2))
+                        expect(attr.frame.origin.x).to(beCloseTo((cellWidth + hPadding) * 2))
                         
                         rowCount += 1
                     }
@@ -152,13 +152,13 @@ class InstagramStyleLayoutSpec: QuickSpec {
                         } else if attr.indexPath.row == 1 {
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
-                            expect(attr.frame.origin.y).to(equal(cellWidth))
+                            expect(attr.frame.origin.y).to(beCloseTo(cellWidth))
                             expect(attr.frame.origin.x).to(equal(0))
                         } else if attr.indexPath.row == 2 {
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth * 2))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth * 2))
                             expect(attr.frame.origin.y).to(equal(0))
-                            expect(attr.frame.origin.x).to(equal(cellWidth))
+                            expect(attr.frame.origin.x).to(beCloseTo(cellWidth))
                             
                             rowCount += 2
                         } else {
@@ -167,9 +167,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(0))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth * 2))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2))
                                 
                                 rowCount += 1
                             }
@@ -194,7 +194,7 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.origin.y).to(equal(0))
-                            expect(attr.frame.origin.x).to(equal(cellWidth))
+                            expect(attr.frame.origin.x).to(beCloseTo(cellWidth))
                         }
                     }
                 }
@@ -225,7 +225,7 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth * 2))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth * 2))
                             expect(attr.frame.origin.y).to(equal(vPadding))
-                            expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                            expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             
                             rowCount += 2
                         } else {
@@ -234,9 +234,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(hPadding))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth * 2 + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2 + hPadding))
                                 
                                 rowCount += 1
                             }
@@ -264,13 +264,13 @@ class InstagramStyleLayoutSpec: QuickSpec {
                         } else if attr.indexPath.row == 1 {
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
-                            expect(attr.frame.origin.y).to(equal(cellWidth + vPadding))
+                            expect(attr.frame.origin.y).to(beCloseTo(cellWidth + vPadding))
                             expect(attr.frame.origin.x).to(equal(0))
                         } else if attr.indexPath.row == 2 {
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth * 2 + hPadding))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth * 2 + vPadding))
                             expect(attr.frame.origin.y).to(equal(0))
-                            expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                            expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             
                             rowCount += 2
                         } else {
@@ -319,9 +319,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(0))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth * 2))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2))
                                 
                                 rowCount += 1
                             }
@@ -342,14 +342,14 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
-                            expect(attr.frame.origin.y).to(equal(CGFloat(rowCount) * cellWidth))
+                            expect(attr.frame.origin.y).to(beCloseTo(CGFloat(rowCount) * cellWidth))
                             
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(0))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth * 2))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2))
                                 
                                 rowCount += 1
                             }
@@ -389,9 +389,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(hPadding))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth * 2 + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2 + hPadding))
                                 
                                 rowCount += 1
                             }
@@ -417,9 +417,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(hPadding))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth * 2 + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth * 2 + hPadding))
                                 
                                 rowCount += 1
                             }
@@ -453,14 +453,14 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
-                            expect(attr.frame.origin.y).to(equal(CGFloat(rowCount) * (cellWidth + vPadding)))
+                            expect(attr.frame.origin.y).to(beCloseTo(CGFloat(rowCount) * (cellWidth + vPadding)))
                             
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(0))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(2 * (cellWidth + hPadding)))
+                                expect(attr.frame.origin.x).to(beCloseTo(2 * (cellWidth + hPadding)))
                                 
                                 rowCount += 1
                             }
@@ -486,9 +486,9 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(0))
                             } else if attr.indexPath.row % 3 == 1 {
-                                expect(attr.frame.origin.x).to(equal(cellWidth + hPadding))
+                                expect(attr.frame.origin.x).to(beCloseTo(cellWidth + hPadding))
                             } else if attr.indexPath.row % 3 == 2 {
-                                expect(attr.frame.origin.x).to(equal(2 * (cellWidth + hPadding)))
+                                expect(attr.frame.origin.x).to(beCloseTo(2 * (cellWidth + hPadding)))
                                 
                                 rowCount += 1
                             }
