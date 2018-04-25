@@ -1,8 +1,2 @@
 language: swift
 osx_image: xcode9.2
-xcode_workspace: collection-view-layouts.xcworkspace
-
-before_install:
-  - pod install
-
-
