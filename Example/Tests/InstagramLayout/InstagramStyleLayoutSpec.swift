@@ -64,7 +64,7 @@ class InstagramStyleLayoutSpec: QuickSpec {
                 for attr in attributes {
                     expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                     expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
-                    expect(attr.frame.origin.y).to(equal(CGFloat(rowCount) * cellWidth))
+                    expect(attr.frame.origin.y).to(beCloseTo(CGFloat(rowCount) * cellWidth))
                     
                     if attr.indexPath.row % 3 == 0 {
                         expect(attr.frame.origin.x).to(equal(0))
@@ -384,7 +384,7 @@ class InstagramStyleLayoutSpec: QuickSpec {
                             
                             expect(attr.frame.size.width).to(beLessThanOrEqualTo(cellWidth))
                             expect(attr.frame.size.height).to(beLessThanOrEqualTo(cellWidth))
-                            expect(attr.frame.origin.y).to(equal(CGFloat(rowCount) * cellWidth + vPadding))
+                            expect(attr.frame.origin.y).to(beCloseTo(CGFloat(rowCount) * cellWidth + vPadding))
                             
                             if attr.indexPath.row % 3 == 0 {
                                 expect(attr.frame.origin.x).to(equal(hPadding))
