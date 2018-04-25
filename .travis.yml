@@ -1,11 +1,6 @@
 language: swift
 osx_image: xcode9.2
 
-podfile: Example/Podfile
-xcode_project: Example/collection-view-layouts.xcodeproj
-xcode_scheme: collection-view-layouts_Tests
-
-before_install:
-  - pod install
-
-
+script:
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/${POD_NAME}.xcworkspace -scheme ${POD_NAME}-Example -sdk iphonesimulator10.0 ONLY_ACTIVE_ARCH=NO | xcpretty
+- pod lib lint
