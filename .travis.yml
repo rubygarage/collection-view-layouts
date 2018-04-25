@@ -1,2 +1,11 @@
 language: swift
 osx_image: xcode9.2
+
+podfile: Example/Podfile
+xcode_project: Example/collection-view-layouts.xcodeproj
+xcode_scheme: collection-view-layouts_Tests
+
+before_install:
+  - pod install
+
+
