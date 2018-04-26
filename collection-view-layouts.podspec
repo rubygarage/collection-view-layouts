@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'collection-view-layouts'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Collection view custom flow layouts'
   s.description      = 'A set of custom collection view flow layouts.'
 
