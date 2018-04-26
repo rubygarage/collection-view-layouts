@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/rubygarage/collection-view-layouts.svg?branch=feature/travis_conf)](https://travis-ci.org/rubygarage/shopapp-shopify-ios)
-[![codecov](https://codecov.io/gh/rubygarage/collection-view-layouts/branch/feature/travis_conf/graph/badge.svg)](https://codecov.io/gh/rubygarage/collection-view-layouts)
+[![Build Status](https://travis-ci.org/rubygarage/collection-view-layouts.svg?branch=master)](https://travis-ci.org/rubygarage/shopapp-shopify-ios)
+[![codecov](https://codecov.io/gh/rubygarage/collection-view-layouts/branch/master/graph/badge.svg)](https://codecov.io/gh/rubygarage/collection-view-layouts)
 
 # About
 
