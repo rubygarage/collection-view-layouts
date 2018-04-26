@@ -9,4 +9,6 @@ before_install:
 
 script:
 - set -o pipefail && xcodebuild -workspace Example/collection-view-layouts.xcworkspace -scheme collection-view-layouts-Example -configuration 'Debug' -sdk 'iphonesimulator11.2' -destination 'platform=iOS Simulator,name=iPhone 7' test | xcpretty -f `xcpretty-travis-formatter`
-- pod lib lint
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
