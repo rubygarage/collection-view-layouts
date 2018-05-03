@@ -3,7 +3,7 @@
 
 # About
 
-Collection view layouts is a set of custom flow layouts for iOS which imitate general data grid approaches for mobile apps.
+Collection View Layouts is a set of custom flow layouts for iOS which imitate general data grid approaches for mobile apps.
 
 # Flow types
 
@@ -16,10 +16,10 @@ Collection view layouts is a set of custom flow layouts for iOS which imitate ge
     	<td align="center">Instagram</td>
     </tr>
     <tr>
-      <td><img src="https://image.ibb.co/dTsGZ7/01_tags.png" width="200"></td>
-      <td><img src="https://image.ibb.co/ne0vu7/02_pinterest.png" width="200"></td>
-      <td><img src="https://image.ibb.co/iAuc7S/03_px500.png" width="200"></td>
-      <td><img src="https://image.ibb.co/dBNau7/04_instagram.png" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/tags.png?raw=true" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/pinterest.png?raw=true" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/px500.png?raw=true" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/instagram.png?raw=true" width="200"></td>
     </tr>
     <tr>
     	<td align="center">Flipboard</td>
@@ -27,9 +27,9 @@ Collection view layouts is a set of custom flow layouts for iOS which imitate ge
     	<td align="center">Flickr</td>
     </tr>
     <tr>
-      <td><img src="https://image.ibb.co/fP4Ygn/05_flipboard.png" width="200"></td>
-      <td><img src="https://image.ibb.co/ijVTE7/06_facebook.png" width="200"></td>
-      <td><img src="https://image.ibb.co/mqTtgn/07_flickr.png" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/flipboard.png?raw=true" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/facebook.png?raw=true" width="200"></td>
+      <td><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/flickr.png?raw=true" width="200"></td>
     </tr>
   </tbody>
 </table>
@@ -106,4 +106,10 @@ sergey.afanasiev@rubygarage.org
 
 ## License
 
-Collection Flow Layouts is available under the MIT license. See the LICENSE file for more info.
+Collection View Layouts is licensed under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0)
+
+***
+
+<a href="https://rubygarage.org/"><img src="https://github.com/rubygarage/collection-view-layouts/blob/master/assets/rubygarage.png?raw=true" alt="RubyGarage Logo" width="415" height="128"></a>
+
+RubyGarage is a leading software development and consulting company in Eastern Europe. Our main expertise includes Ruby and Ruby on Rails, but we successfuly employ other technologies to deliver the best results to our clients. [Check out our portoflio](https://rubygarage.org/portfolio) for even more exciting works!
