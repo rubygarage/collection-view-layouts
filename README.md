@@ -45,7 +45,7 @@ Collection View Layouts is a set of custom flow layouts for iOS which imitate ge
 ## Installation
 
 ### CocoaPods
-MediaWatermark is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following lines (depends on your needs) to your `Podfile`:
+Collection View Layouts is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following lines (depends on your needs) to your `Podfile`:
 
 ```ruby
 pod 'collection-view-layouts/Core'
