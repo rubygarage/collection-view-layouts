@@ -23,28 +23,32 @@ public class PinterestStyleFlowLayout: ContentDynamicLayout {
         var currentColumnIndex: Int = 0
 
         previousCellsYOffset = [CGFloat](repeating: contentPadding.vertical, count: columnsCount)
+        
+        let sectionsCount = contentCollectionView.numberOfSections
 
-        for item in 0 ..< (contentCollectionView.numberOfItems(inSection: 0)) {
-            let cellWidth = calculateCellWidth()
-
-            let indexPath = IndexPath(item: item, section: 0)
-
-            let cellSize = delegate!.cellSize(indexPath: indexPath)
-
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attributes.frame.size = delegate!.cellSize(indexPath: indexPath)
-            attributes.frame.size.width = cellWidth
-
-            let minOffsetInfo = minYOffsetFrom(array: previousCellsYOffset)
-            attributes.frame.origin.y = minOffsetInfo.offset
-
-            currentColumnIndex = minOffsetInfo.index
-
-            attributes.frame.origin.x = CGFloat(currentColumnIndex) * (cellWidth + cellsPadding.horizontal) + contentPadding.horizontal
-
-            previousCellsYOffset[currentColumnIndex] = cellSize.height + previousCellsYOffset[currentColumnIndex] + cellsPadding.vertical
-
-            addCachedLayoutAttributes(attributes: attributes)
+        for section in 0..<sectionsCount {
+            for item in 0 ..< contentCollectionView.numberOfItems(inSection: section) {
+                let cellWidth = calculateCellWidth()
+                
+                let indexPath = IndexPath(item: item, section: section)
+                
+                let cellSize = delegate!.cellSize(indexPath: indexPath)
+                
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                attributes.frame.size = delegate!.cellSize(indexPath: indexPath)
+                attributes.frame.size.width = cellWidth
+                
+                let minOffsetInfo = minYOffsetFrom(array: previousCellsYOffset)
+                attributes.frame.origin.y = minOffsetInfo.offset
+                
+                currentColumnIndex = minOffsetInfo.index
+                
+                attributes.frame.origin.x = CGFloat(currentColumnIndex) * (cellWidth + cellsPadding.horizontal) + contentPadding.horizontal
+                
+                previousCellsYOffset[currentColumnIndex] = cellSize.height + previousCellsYOffset[currentColumnIndex] + cellsPadding.vertical
+                
+                addCachedLayoutAttributes(attributes: attributes)
+            }
         }
 
         contentSize.height = previousCellsYOffset.max()! + contentPadding.vertical - cellsPadding.vertical
