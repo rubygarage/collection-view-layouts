@@ -130,11 +130,11 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
                 if section % kSectionsCount == 0 {
-                    calculateRightPreviewSection(attributes: attributes, indexPath: indexPath, cellHeight: cellHeight, section: &section, yOffset: &yOffset)
+                    calculateRightPreviewSection(attributes: attributes, indexPath: indexPath, cellHeight: cellHeight, section: &section, yOffset: &yOffset, sect: sect)
                 } else if section % kSectionsCount == 1 || section % kSectionsCount == 3 {
-                    calculateDefaultSection(attributes: attributes, indexPath: indexPath, rowCount: &rowCount, cellHeight: cellHeight, section: &section, yOffset: &yOffset)
+                    calculateDefaultSection(attributes: attributes, indexPath: indexPath, rowCount: &rowCount, cellHeight: cellHeight, section: &section, yOffset: &yOffset, sect: sect)
                 } else if section % kSectionsCount == 2 {
-                    calculateLeftPreviewSection(attributes: attributes, indexPath: indexPath, cellHeight: cellHeight, section: &section, yOffset: &yOffset)
+                    calculateLeftPreviewSection(attributes: attributes, indexPath: indexPath, cellHeight: cellHeight, section: &section, yOffset: &yOffset, sect: sect)
                 }
                 
                 addCachedLayoutAttributes(attributes: attributes)
@@ -146,8 +146,8 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
         }
     }
     
-    private func calculateRightPreviewSection(attributes: UICollectionViewLayoutAttributes, indexPath: IndexPath, cellHeight: CGFloat,  section: inout Int, yOffset: inout CGFloat) {
-        let itemsCount = collectionView!.numberOfItems(inSection: 0)
+    private func calculateRightPreviewSection(attributes: UICollectionViewLayoutAttributes, indexPath: IndexPath, cellHeight: CGFloat,  section: inout Int, yOffset: inout CGFloat, sect: Int) {
+        let itemsCount = collectionView!.numberOfItems(inSection: sect)
 
         if indexPath.row % kColumnsCount == 0 {
             attributes.frame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellHeight, height: cellHeight)
@@ -167,8 +167,8 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
         }
     }
     
-    private func calculateDefaultSection(attributes: UICollectionViewLayoutAttributes, indexPath: IndexPath, rowCount: inout Int, cellHeight: CGFloat,  section: inout Int, yOffset: inout CGFloat) {
-        let itemsCount = collectionView!.numberOfItems(inSection: 0)
+    private func calculateDefaultSection(attributes: UICollectionViewLayoutAttributes, indexPath: IndexPath, rowCount: inout Int, cellHeight: CGFloat,  section: inout Int, yOffset: inout CGFloat, sect: Int) {
+        let itemsCount = collectionView!.numberOfItems(inSection: sect)
 
         let x = CGFloat(indexPath.row % kColumnsCount) * (cellHeight + cellsPadding.horizontal) + contentPadding.horizontal
         attributes.frame = CGRect(x: x, y: yOffset, width: cellHeight, height: cellHeight)
@@ -186,8 +186,8 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
         yOffset = (indexPath.row + 1 == itemsCount && indexPath.row % kColumnsCount != 2) ? yOffset + cellHeight : yOffset
     }
     
-    private func calculateLeftPreviewSection(attributes: UICollectionViewLayoutAttributes, indexPath: IndexPath, cellHeight: CGFloat,  section: inout Int, yOffset: inout CGFloat) {
-        let itemsCount = collectionView!.numberOfItems(inSection: 0)
+    private func calculateLeftPreviewSection(attributes: UICollectionViewLayoutAttributes, indexPath: IndexPath, cellHeight: CGFloat,  section: inout Int, yOffset: inout CGFloat, sect: Int) {
+        let itemsCount = collectionView!.numberOfItems(inSection: sect)
 
         if indexPath.row % kColumnsCount == 0 {
             let bigFrame = CGRect(x: contentPadding.horizontal, y: yOffset, width: cellHeight * 2 + cellsPadding.horizontal, height: cellHeight * 2 + cellsPadding.vertical)

@@ -24,7 +24,7 @@ public class FlickrStyleFlowLayout: ContentDynamicLayout {
         let sectionsCount = collectionView!.numberOfSections
         
         for section in 0..<sectionsCount {
-            let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
+            let itemsCount = contentCollectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
