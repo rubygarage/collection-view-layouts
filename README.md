@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rubygarage/collection-view-layouts.svg?branch=master)](https://travis-ci.org/rubygarage/shopapp-shopify-ios)
+[![Build Status](https://travis-ci.org/rubygarage/collection-view-layouts.svg?branch=master)](https://travis-ci.org/rubygarage/collection-view-layouts)
 [![codecov](https://codecov.io/gh/rubygarage/collection-view-layouts/branch/master/graph/badge.svg)](https://codecov.io/gh/rubygarage/collection-view-layouts)
 
 # About
