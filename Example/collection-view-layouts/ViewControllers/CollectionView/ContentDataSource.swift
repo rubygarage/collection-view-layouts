@@ -17,10 +17,6 @@ class ContentDataSource: NSObject, UICollectionViewDataSource {
         return items.count
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kContenCellIdentifier, for: indexPath)
         (cell as! ContentCell).configureCell(item: items[indexPath.row])
