@@ -23,41 +23,45 @@ public class TagsStyleFlowLayout: ContentDynamicLayout {
 
         var topMargin: CGFloat = contentPadding.vertical
 
-        for item in 0 ..< contentCollectionView.numberOfItems(inSection: 0) {
-            let indexPath = IndexPath(item: item, section: 0)
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-
-            attributes.frame.size = delegate!.cellSize(indexPath: indexPath)
-
-            let currentCellWidth = attributes.frame.size.width
-            let currentCellHeight = attributes.frame.size.height
-
-            if contentAlign == .left {
-                if leftMargin + currentCellWidth + cellsPadding.vertical > contentCollectionView.frame.size.width {
-                    leftMargin = contentPadding.horizontal
-                    topMargin += attributes.frame.size.height + cellsPadding.vertical
+        let sectionsCount = contentCollectionView.numberOfSections
+        
+        for section in 0..<sectionsCount {
+            for item in 0 ..< contentCollectionView.numberOfItems(inSection: section) {
+                let indexPath = IndexPath(item: item, section: section)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                
+                attributes.frame.size = delegate!.cellSize(indexPath: indexPath)
+                
+                let currentCellWidth = attributes.frame.size.width
+                let currentCellHeight = attributes.frame.size.height
+                
+                if contentAlign == .left {
+                    if leftMargin + currentCellWidth + cellsPadding.vertical > contentCollectionView.frame.size.width {
+                        leftMargin = contentPadding.horizontal
+                        topMargin += attributes.frame.size.height + cellsPadding.vertical
+                    }
+                    
+                    attributes.frame.origin.x = leftMargin
+                    attributes.frame.origin.y = topMargin
+                    
+                    leftMargin += currentCellWidth + cellsPadding.horizontal
+                    
+                } else if contentAlign == .right {
+                    if leftMargin - currentCellWidth - cellsPadding.horizontal < 0 {
+                        leftMargin = contentCollectionView.frame.size.width - contentPadding.horizontal
+                        topMargin += attributes.frame.size.height + cellsPadding.vertical
+                    }
+                    
+                    attributes.frame.origin.x = leftMargin - currentCellWidth
+                    attributes.frame.origin.y = topMargin
+                    
+                    leftMargin -= currentCellWidth + cellsPadding.horizontal
                 }
-
-                attributes.frame.origin.x = leftMargin
-                attributes.frame.origin.y = topMargin
-
-                leftMargin += currentCellWidth + cellsPadding.horizontal
-
-            } else if contentAlign == .right {
-                if leftMargin - currentCellWidth - cellsPadding.horizontal < 0 {
-                    leftMargin = contentCollectionView.frame.size.width - contentPadding.horizontal
-                    topMargin += attributes.frame.size.height + cellsPadding.vertical
-                }
-
-                attributes.frame.origin.x = leftMargin - currentCellWidth
-                attributes.frame.origin.y = topMargin
-
-                leftMargin -= currentCellWidth + cellsPadding.horizontal
+                
+                addCachedLayoutAttributes(attributes: attributes)
+                
+                contentSize.height = topMargin + currentCellHeight + contentPadding.vertical
             }
-
-            addCachedLayoutAttributes(attributes: attributes)
-
-            contentSize.height = topMargin + currentCellHeight + contentPadding.vertical
         }
     }
 }

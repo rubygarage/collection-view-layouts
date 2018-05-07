@@ -24,67 +24,71 @@ public class Px500StyleFlowLayout: ContentDynamicLayout {
             return
         }
         
-        let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
-
-        var sum: Int = 0
-        var rowCount: Int = 0
-        var cellsInRowCount: UInt32 = 0
-
-        if layoutConfiguration.count == 0 {            
-            while sum < itemsCount {
-                if sum + Int(kMaxCellsInRow) < itemsCount {
-                    cellsInRowCount = arc4random_uniform(kMaxCellsInRow) + kMinCellsInRow
-                } else {
-                    cellsInRowCount = UInt32(itemsCount - sum)
+        let sectionsCount = contentCollectionView.numberOfSections
+        
+        for section in 0..<sectionsCount {
+            let itemsCount = contentCollectionView.numberOfItems(inSection: section)
+            
+            var sum: Int = 0
+            var rowCount: Int = 0
+            var cellsInRowCount: UInt32 = 0
+            
+            if layoutConfiguration.count == 0 {
+                while sum < itemsCount {
+                    if sum + Int(kMaxCellsInRow) < itemsCount {
+                        cellsInRowCount = arc4random_uniform(kMaxCellsInRow) + kMinCellsInRow
+                    } else {
+                        cellsInRowCount = UInt32(itemsCount - sum)
+                    }
+                    
+                    sum += Int(cellsInRowCount)
+                    layoutConfiguration[rowCount] = Int(cellsInRowCount)
+                    
+                    rowCount += 1
+                }
+            } else {
+                rowCount = layoutConfiguration.count
+            }
+            
+            let cellHeight = collectionView!.frame.height / CGFloat(visibleRowsCount)
+            
+            var index: Int = 0
+            var yOffset: CGFloat = contentPadding.vertical
+            
+            for i in 0..<rowCount  {
+                let cellsInRow = layoutConfiguration[i]!
+                
+                var xOffset: CGFloat = contentPadding.horizontal
+                var cellsSizes = [CGSize]()
+                
+                for i in index..<(index + cellsInRow)  {
+                    let indexPath = IndexPath(item: i, section: section)
+                    let contentSize = delegate!.cellSize(indexPath: indexPath)
+                    
+                    cellsSizes.append(contentSize)
                 }
                 
-                sum += Int(cellsInRowCount)
-                layoutConfiguration[rowCount] = Int(cellsInRowCount)
+                let cellWidthsPercents = convertCellWidthsToRelative(cellsSizes: cellsSizes)
                 
-                rowCount += 1
+                for j in 0..<cellsInRow {
+                    let indexPath = IndexPath(item: index, section: section)
+                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                    
+                    let currentCellWidth = cellWidthsPercents[j]
+                    
+                    attributes.frame = CGRect(x: xOffset, y: yOffset, width: currentCellWidth, height: cellHeight)
+                    
+                    addCachedLayoutAttributes(attributes: attributes)
+                    index += 1
+                    xOffset += (currentCellWidth + cellsPadding.horizontal)
+                }
+                
+                yOffset += (cellHeight + cellsPadding.vertical)
             }
-        } else {
-            rowCount = layoutConfiguration.count
+            
+            contentSize.width = contentCollectionView.frame.size.width
+            contentSize.height = CGFloat(rowCount) * (cellHeight + cellsPadding.vertical) + contentPadding.vertical + cellsPadding.vertical
         }
-        
-        let cellHeight = collectionView!.frame.height / CGFloat(visibleRowsCount)
-        
-        var index: Int = 0
-        var yOffset: CGFloat = contentPadding.vertical
-        
-        for i in 0..<rowCount  {
-            let cellsInRow = layoutConfiguration[i]!
-            
-            var xOffset: CGFloat = contentPadding.horizontal
-            var cellsSizes = [CGSize]()
-            
-            for i in index..<(index + cellsInRow)  {
-                let indexPath = IndexPath(item: i, section: 0)
-                let contentSize = delegate!.cellSize(indexPath: indexPath)
-                
-                cellsSizes.append(contentSize)
-            }
-            
-            let cellWidthsPercents = convertCellWidthsToRelative(cellsSizes: cellsSizes)
-            
-            for j in 0..<cellsInRow {
-                let indexPath = IndexPath(item: index, section: 0)
-                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                
-                let currentCellWidth = cellWidthsPercents[j]
-                                
-                attributes.frame = CGRect(x: xOffset, y: yOffset, width: currentCellWidth, height: cellHeight)
-                
-                addCachedLayoutAttributes(attributes: attributes)
-                index += 1
-                xOffset += (currentCellWidth + cellsPadding.horizontal)
-            }
-            
-            yOffset += (cellHeight + cellsPadding.vertical)
-        }
-        
-        contentSize.width = contentCollectionView.frame.size.width
-        contentSize.height = CGFloat(rowCount - 1) * (cellHeight + cellsPadding.vertical) + contentPadding.vertical + cellsPadding.vertical
     }
     
     private func convertCellWidthsToRelative(cellsSizes: [CGSize]) -> [CGFloat] {
