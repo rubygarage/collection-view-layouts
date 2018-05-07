@@ -35,7 +35,6 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
     }
     
     private func calculateDefaultGridCellFrame() {
-        let itemsCount = collectionView!.numberOfItems(inSection: 0)
         let collectionViewWidth = collectionView!.frame.width
         
         let cellHeight = (collectionViewWidth - 2 * contentPadding.horizontal - 2 * cellsPadding.vertical) / 3
@@ -44,6 +43,8 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
         let sectionsCount = collectionView!.numberOfSections
         
         for section in 0..<sectionsCount {
+            let itemsCount = collectionView!.numberOfItems(inSection: section)
+
             for item in 0 ..< itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -57,18 +58,17 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
                 
                 addCachedLayoutAttributes(attributes: attributes)
             }
+            
+            contentSize.width = collectionViewWidth
+            
+            let addHeight = (itemsCount % kColumnsCount) > 0 ? cellHeight : 0
+            let innerHeight = CGFloat(itemsCount / kColumnsCount) * (cellHeight + cellsPadding.vertical)
+            let outerHeight = 2 * contentPadding.vertical
+            contentSize.height = innerHeight + addHeight + outerHeight
         }
-        
-        contentSize.width = collectionViewWidth
-        
-        let addHeight = (itemsCount % kColumnsCount) > 0 ? cellHeight : 0
-        let innerHeight = CGFloat(itemsCount / kColumnsCount) * (cellHeight + cellsPadding.vertical)
-        let outerHeight = 2 * contentPadding.vertical
-        contentSize.height = innerHeight + addHeight + outerHeight
     }
     
     private func calculateOnePreviewGridCellFrame() {
-        let itemsCount = collectionView!.numberOfItems(inSection: 0)
         let collectionViewWidth = collectionView!.frame.width
         
         let cellHeight = (collectionViewWidth - 2 * contentPadding.horizontal - 2 * cellsPadding.vertical) / 3
@@ -77,6 +77,8 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
         let sectionsCount = collectionView!.numberOfSections
         
         for section in 0..<sectionsCount {
+            let itemsCount = collectionView!.numberOfItems(inSection: section)
+
             for item in 0 ..< itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -102,12 +104,12 @@ public class InstagramStyleFlowLayout: ContentDynamicLayout {
                 
                 addCachedLayoutAttributes(attributes: attributes)
             }
+            
+            contentSize.width = collectionView!.frame.size.width
+            
+            let addHeight = (itemsCount % kColumnsCount) > 0 ? cellHeight : 0
+            contentSize.height = yOffset + addHeight + 2 * contentPadding.vertical
         }
-        
-        contentSize.width = collectionView!.frame.size.width
-        
-        let addHeight = (itemsCount % kColumnsCount) > 0 ? cellHeight : 0
-        contentSize.height = yOffset + addHeight + 2 * contentPadding.vertical
     }
     
     private func calculateRegularPreviewCellFrame() {

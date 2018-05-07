@@ -26,9 +26,8 @@ public class FlipboardStyleFlowLayout: ContentDynamicLayout {
         
         for section in 0..<sectionsCount {
             let itemsCount = contentCollectionView.numberOfItems(inSection: section)
-            
-            for item in 0 ..< itemsCount  {
-                let indexPath = IndexPath(item: item, section: 0)
+            for item in 0 ..< itemsCount {
+                let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
                 if indexPath.row % kCellsInSection == 0 {

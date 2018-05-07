@@ -19,13 +19,13 @@ public class FlickrStyleFlowLayout: ContentDynamicLayout {
         
         contentSize.width = contentCollectionView.frame.size.width
         
-        let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
-        
         var yOffset: CGFloat = contentPadding.vertical
         
         let sectionsCount = collectionView!.numberOfSections
         
         for section in 0..<sectionsCount {
+            let itemsCount = contentCollectionView.numberOfItems(inSection: 0)
+
             for item in 0 ..< itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)

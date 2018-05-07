@@ -28,8 +28,7 @@ public class FacebookStyleFlowLayout: ContentDynamicLayout {
         
         for section in 0..<sectionsCount {
             let itemsCount = contentCollectionView.numberOfItems(inSection: section)
-            
-            for item in 0 ..< itemsCount  {
+            for item in 0 ..< itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
