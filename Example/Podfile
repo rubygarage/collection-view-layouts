@@ -13,8 +13,8 @@ target 'collection-view-layouts_Example' do
     target 'collection-view-layouts_Tests' do
         inherit! :search_paths
         
-        pod 'Quick', '~> 1.2.0'
-        pod 'Nimble', '~> 7.0.2'
-        pod 'Fakery', '~> 3.3'
+        pod 'Quick', '~> 2.1.0'
+        pod 'Nimble', '~> 8.0.1'
+        pod 'Fakery', '~> 4.0.0'
     end
 end

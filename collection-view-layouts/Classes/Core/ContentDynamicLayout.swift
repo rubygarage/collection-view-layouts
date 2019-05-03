@@ -40,6 +40,12 @@ public class ContentDynamicLayout: UICollectionViewFlowLayout {
     public var contentSize: CGSize = .zero
     public weak var delegate: ContentDynamicLayoutDelegate?
 
+    public var contentWidthWithoutPadding: CGFloat {
+        return contentSize.width - 2 * contentPadding.horizontal
+    }
+
+    // MARK: - UICollectionViewFlowLayout
+
     override public func prepare() {
         super.prepare()
 
@@ -48,30 +54,24 @@ public class ContentDynamicLayout: UICollectionViewFlowLayout {
     }
 
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var layoutAttributes = [UICollectionViewLayoutAttributes]()
-        for attributes in cachedLayoutAttributes {
-            if attributes.frame.intersects(rect) {
-                layoutAttributes.append(attributes)
-            }
-        }
-        return layoutAttributes
+        return cachedLayoutAttributes.filter { $0.frame.intersects(rect) }
     }
 
     override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cachedLayoutAttributes.first { attributes -> Bool in
-            return attributes.indexPath == indexPath
-        }
+        return cachedLayoutAttributes.first { $0.indexPath == indexPath }
     }
 
-    public func calculateCollectionViewCellsFrames() {
+    override public var collectionViewContentSize: CGSize {
+        return contentSize
+    }
+
+    // MARK: - Methods for subclasses
+
+    func calculateCollectionViewCellsFrames() {
         fatalError("Method must be overriden")
     }
     
     func addCachedLayoutAttributes(attributes: UICollectionViewLayoutAttributes) {
         cachedLayoutAttributes.append(attributes)
-    }
-
-    override public var collectionViewContentSize: CGSize {
-        return contentSize
     }
 }

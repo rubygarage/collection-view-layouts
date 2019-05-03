@@ -1,0 +1,52 @@
+PODS:
+  - collection-view-layouts/Core (0.1.2)
+  - collection-view-layouts/FacebookLayout (0.1.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/FlickrLayout (0.1.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/FlipboardLayout (0.1.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/InstagramLayout (0.1.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/PinterestLayout (0.1.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/Px500Layout (0.1.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/TagsLayout (0.1.2):
+    - collection-view-layouts/Core
+  - Fakery (4.0.0)
+  - Nimble (8.0.1)
+  - Quick (2.1.0)
+
+DEPENDENCIES:
+  - collection-view-layouts/Core (from `../`)
+  - collection-view-layouts/FacebookLayout (from `../`)
+  - collection-view-layouts/FlickrLayout (from `../`)
+  - collection-view-layouts/FlipboardLayout (from `../`)
+  - collection-view-layouts/InstagramLayout (from `../`)
+  - collection-view-layouts/PinterestLayout (from `../`)
+  - collection-view-layouts/Px500Layout (from `../`)
+  - collection-view-layouts/TagsLayout (from `../`)
+  - Fakery (~> 4.0.0)
+  - Nimble (~> 8.0.1)
+  - Quick (~> 2.1.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Fakery
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  collection-view-layouts:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  collection-view-layouts: 8ce88b6d21f5776eea0556fb405afc39a9bcf513
+  Fakery: 476f6d947de432f84703acc830a1e7166330299b
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
+
+PODFILE CHECKSUM: 9f9a8d5f6dcb3c15451c061f4dce4369b5619575
+
+COCOAPODS: 1.7.0.beta.3

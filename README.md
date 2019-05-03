@@ -3,9 +3,9 @@
 
 # About
 
-Collection View Layouts is a set of custom flow layouts for iOS which imitate general data grid approaches for mobile apps.
+Collection View Layouts is a set of custom layouts for iOS which imitate general data grid approaches for mobile apps.
 
-# Flow types
+# Layout types
 
 <table>
   <tbody>
@@ -35,7 +35,7 @@ Collection View Layouts is a set of custom flow layouts for iOS which imitate ge
 </table>
 
 ## Overview
-* 7 popular flow-layouts for iOS collection view
+* 7 popular layouts for iOS collection view
 * Tags and Flipboard layouts support left and right content align
 * 500px has custom cells layout configuration
 * Three modes for instagram layout (default grid mode, one preview cell, regular preview cell)
@@ -69,17 +69,17 @@ To run the example project, clone the repo, and run pod install from the Example
 
 ## Usage
 
-Configuration of custom flow layouts is pretty easy:
+Configuration of custom layouts is pretty easy:
 
 ```swift
-var contentFlowLayout: ContentDynamicLayout = TagsStyleFlowLayout()
+var contentDynamicLayout: ContentDynamicLayout = TagsLayout()
 
-contentFlowLayout?.delegate = self
-contentFlowLayout?.contentPadding = ItemsPadding(horizontal: 10, vertical: 10)
-contentFlowLayout?.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
-contentFlowLayout?.contentAlign = .left
+contentDynamicLayout.delegate = self
+contentDynamicLayout.delegate = ItemsPadding(horizontal: 10, vertical: 10)
+contentDynamicLayout.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
+contentDynamicLayout.contentAlign = .left
 
-collectionView.collectionViewLayout = contentFlowLayout!
+collectionView.collectionViewLayout = contentDynamicLayout
 collectionView.reloadData()
 ```
 
