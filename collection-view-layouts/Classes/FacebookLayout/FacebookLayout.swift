@@ -32,9 +32,9 @@ public class FacebookLayout: ContentDynamicLayout {
         for section in 0..<collectionView.numberOfSections {
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
-            for item in 0 ..< collectionView.numberOfItems(inSection: section) {
+            for item in 0 ..< itemsCount {
                 let remainder = item % patternTotalCellsCount
-                let isLastRow = item == itemsCount - 1
+                let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
@@ -42,8 +42,8 @@ public class FacebookLayout: ContentDynamicLayout {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: largeCellSize)
 
-                    if isLastRow {
-                        yOffset += largeCellSide
+                    if isLastItem {
+                        yOffset += largeCellSide + cellsPadding.vertical
                     }
                 } else if remainder == 1 {
                     let x = largeCellSide + contentPadding.horizontal + cellsPadding.horizontal
@@ -55,16 +55,16 @@ public class FacebookLayout: ContentDynamicLayout {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallCellSize)
 
-                    if isLastRow {
-                        yOffset += smallCellSide
+                    if isLastItem {
+                        yOffset += smallCellSide + cellsPadding.vertical
                     }
                 } else if remainder == 3 {
                     let x = smallCellSide + cellsPadding.horizontal + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallCellSize)
 
-                    if isLastRow {
-                        yOffset += smallCellSide
+                    if isLastItem {
+                        yOffset += smallCellSide + cellsPadding.vertical
                     }
                 } else if remainder == 4 {
                     let x = 2 * (smallCellSide + cellsPadding.horizontal) + contentPadding.horizontal

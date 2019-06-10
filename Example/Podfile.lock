@@ -1,18 +1,18 @@
 PODS:
-  - collection-view-layouts/Core (0.1.2)
-  - collection-view-layouts/FacebookLayout (0.1.2):
+  - collection-view-layouts/Core (0.2.0)
+  - collection-view-layouts/FacebookLayout (0.2.0):
     - collection-view-layouts/Core
-  - collection-view-layouts/FlickrLayout (0.1.2):
+  - collection-view-layouts/FlickrLayout (0.2.0):
     - collection-view-layouts/Core
-  - collection-view-layouts/FlipboardLayout (0.1.2):
+  - collection-view-layouts/FlipboardLayout (0.2.0):
     - collection-view-layouts/Core
-  - collection-view-layouts/InstagramLayout (0.1.2):
+  - collection-view-layouts/InstagramLayout (0.2.0):
     - collection-view-layouts/Core
-  - collection-view-layouts/PinterestLayout (0.1.2):
+  - collection-view-layouts/PinterestLayout (0.2.0):
     - collection-view-layouts/Core
-  - collection-view-layouts/Px500Layout (0.1.2):
+  - collection-view-layouts/Px500Layout (0.2.0):
     - collection-view-layouts/Core
-  - collection-view-layouts/TagsLayout (0.1.2):
+  - collection-view-layouts/TagsLayout (0.2.0):
     - collection-view-layouts/Core
   - Fakery (4.0.0)
   - Nimble (8.0.1)
@@ -42,11 +42,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  collection-view-layouts: 8ce88b6d21f5776eea0556fb405afc39a9bcf513
+  collection-view-layouts: f3370a02ca766157860a79ba931cebd6f71c32c2
   Fakery: 476f6d947de432f84703acc830a1e7166330299b
   Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
 
 PODFILE CHECKSUM: 9f9a8d5f6dcb3c15451c061f4dce4369b5619575
 
-COCOAPODS: 1.7.0.beta.3
+COCOAPODS: 1.7.1

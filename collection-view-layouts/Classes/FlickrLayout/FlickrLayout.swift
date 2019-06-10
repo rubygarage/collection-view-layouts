@@ -40,7 +40,7 @@ public class FlickrLayout: ContentDynamicLayout {
 
             for item in 0 ..< itemsCount {
                 let remainder = item % patternTotalCellsCount
-                let isLastRow = item == itemsCount - 1
+                let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
@@ -48,15 +48,15 @@ public class FlickrLayout: ContentDynamicLayout {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallHorizontalCellSize)
 
-                    if isLastRow {
-                        yOffset += smallHorizontalCellHeight
+                    if isLastItem {
+                        yOffset += smallHorizontalCellHeight + cellsPadding.vertical
                     }
                 } else if remainder == 1 {
                     let x = smallCellWidth + contentPadding.horizontal + cellsPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallVerticalCellSize)
 
-                    yOffset += isLastRow ? smallVerticalCellHeight : smallHorizontalCellHeight
+                    yOffset += isLastItem ? smallVerticalCellHeight : smallHorizontalCellHeight
                     yOffset += cellsPadding.vertical
                 } else if remainder == 2 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)

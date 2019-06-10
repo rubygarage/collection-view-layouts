@@ -32,7 +32,7 @@ public class FlipboardLayout: ContentDynamicLayout {
 
             for item in 0 ..< itemsCount {
                 let remainder = item % patternTotalCellsCount
-                let isLastRow = item == itemsCount - 1
+                let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
@@ -44,8 +44,8 @@ public class FlipboardLayout: ContentDynamicLayout {
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: rectangleCellSize)
 
-                    if isLastRow {
-                        yOffset += cellSide
+                    if isLastItem {
+                        yOffset += cellSide + cellsPadding.vertical
                     }
                 } else if remainder == 1 {
                     let x = contentAlign == .left
@@ -60,16 +60,16 @@ public class FlipboardLayout: ContentDynamicLayout {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: squareCellSize)
 
-                    if isLastRow {
-                        yOffset += cellSide
+                    if isLastItem {
+                        yOffset += cellSide + cellsPadding.vertical
                     }
                 } else if remainder == 3 || remainder == 6 {
                     let x = cellSide + cellsPadding.horizontal + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: squareCellSize)
 
-                    if isLastRow {
-                        yOffset += cellSide
+                    if isLastItem {
+                        yOffset += cellSide + cellsPadding.vertical
                     }
                 } else if remainder == 4 || remainder == 7 {
                     let x = 2 * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal

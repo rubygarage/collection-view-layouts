@@ -7,7 +7,6 @@
 
 import UIKit
 
-private let minCellsInRow = 1
 private let centerWidthMinCoef: CGFloat = 0.2
 private let centerWidthMaxCoef: CGFloat = 0.4
 private let notCenterWidthMinCoef: CGFloat = 0.22
@@ -28,7 +27,7 @@ public class Px500Layout: ContentDynamicLayout {
     public var minCellsInRow = MinCellsInRow.one
     public var maxCellsInRow = MaxCellsInRow.three
     public var visibleRowsCount = 5
-    public var layoutConfiguration = Dictionary<Int, Int>()
+    public var layoutConfiguration = [[Int]]()
 
     // MARK: - ContentDynamicLayout
     
@@ -41,15 +40,14 @@ public class Px500Layout: ContentDynamicLayout {
 
         let cellHeight = collectionView.frame.height / CGFloat(visibleRowsCount)
 
+        var yOffset = contentPadding.vertical
+
         for section in 0..<collectionView.numberOfSections {
             let itemsCount = collectionView.numberOfItems(inSection: section)
+            prepareLayoutConfiguration(forSection: section, withItemsCount: itemsCount)
 
             var item = 0
-            var yOffset = contentPadding.vertical
-
-            prepareLayoutConfiguration(with: itemsCount)
-            
-            for (_, cellsInRow) in layoutConfiguration {
+            for cellsInRow in layoutConfiguration[section] {
                 let cellsSizes = Array(item..<(item + cellsInRow)).map { item -> CGSize in
                     let indexPath = IndexPath(item: item, section: section)
                     return delegate.cellSize(indexPath: indexPath)
@@ -66,23 +64,33 @@ public class Px500Layout: ContentDynamicLayout {
                     item += 1
                     xOffset += cellWidth + cellsPadding.horizontal
                 }
-                
+
                 yOffset += cellHeight + cellsPadding.vertical
             }
-
-            contentSize.height = CGFloat(layoutConfiguration.count) * (cellHeight + cellsPadding.vertical)
-                + contentPadding.vertical + cellsPadding.vertical
         }
+
+        contentSize.height = yOffset + contentPadding.vertical
     }
 
     // MARK: - Helpers
 
-    private func prepareLayoutConfiguration(with itemsCount: Int) {
-        guard layoutConfiguration.isEmpty else {
+    private func prepareLayoutConfiguration(forSection section: Int, withItemsCount itemsCount: Int) {
+        if section == layoutConfiguration.count {
+            layoutConfiguration.insert([], at: section)
+        }
+
+        if layoutConfiguration[section].count != itemsCount {
+            layoutConfiguration[section] = []
+        } else if let min = layoutConfiguration[section].min(), let max = layoutConfiguration[section].max() {
+            if min < minCellsInRow.rawValue || max > maxCellsInRow.rawValue {
+                layoutConfiguration[section] = []
+            }
+        }
+
+        guard layoutConfiguration[section].isEmpty else {
             return
         }
 
-        var row = 0
         var cellsSum = 0
         var cellsInRow = 0
 
@@ -94,8 +102,7 @@ public class Px500Layout: ContentDynamicLayout {
             }
 
             cellsSum += cellsInRow
-            layoutConfiguration[row] = cellsInRow
-            row += 1
+            layoutConfiguration[section].append(cellsInRow)
         }
     }
     

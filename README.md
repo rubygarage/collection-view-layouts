@@ -38,7 +38,7 @@ Collection View Layouts is a set of custom layouts for iOS which imitate general
 * 7 popular layouts for iOS collection view
 * Tags and Flipboard layouts support left and right content align
 * 500px has custom cells layout configuration
-* Three modes for instagram layout (default grid mode, one preview cell, regular preview cell)
+* Three modes for Instagram layout (default grid mode, one preview cell, regular preview cell)
 * Each layout can be configured with content and cells paddings separately
 * Tests coverage more than 90%
 
@@ -61,7 +61,7 @@ pod 'collection-view-layouts/FlickrLayout'
 ## Requirements
 
 iOS: 9.0+  
-Swift: 4.1  
+Swift: 5.0  
 CocoaPods: for iOS  
 
 ## Example
