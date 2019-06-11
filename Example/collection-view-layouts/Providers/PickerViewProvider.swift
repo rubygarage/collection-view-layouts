@@ -8,28 +8,19 @@
 
 import UIKit
 
-private let componentsCount = 1
-
 protocol PickerViewProviderDelegate: class {
-    var pickerView: UIPickerView! { get }
-
     func provider(_ provider: PickerViewProvider, didSelect row: Int)
 }
 
 class PickerViewProvider: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
+    var items = [String]()
+
     weak var delegate: PickerViewProviderDelegate?
-
-    private var items = [String]()
-
-    func insert(_ items: [String]) {
-        self.items += items
-        delegate?.pickerView.reloadAllComponents()
-    }
     
     // MARK: - UIPickerViewDataSource
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return componentsCount
+        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

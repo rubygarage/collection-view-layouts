@@ -13,7 +13,7 @@ public class PinterestLayout: ContentDynamicLayout {
 
     // MARK: - ContentDynamicLayout
 
-    override public func calculateCollectionViewCellsFrames() {
+    override public func calculateCollectionViewFrames() {
         guard columnsCount > 0 else {
             fatalError("Value must be greater than zero")
         }
@@ -30,6 +30,10 @@ public class PinterestLayout: ContentDynamicLayout {
         var yOffsets = [CGFloat](repeating: contentPadding.vertical, count: columnsCount)
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffsets: &yOffsets)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
             
             for item in 0 ..< itemsCount {
@@ -47,7 +51,7 @@ public class PinterestLayout: ContentDynamicLayout {
 
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(origin: origin, size: cellSize)
-                addCachedLayoutAttributes(attributes: attributes)
+                cach.append(attributes)
 
                 if isLastItem {
                     let y = yOffsets.max()!
@@ -56,6 +60,10 @@ public class PinterestLayout: ContentDynamicLayout {
                     }
                 }
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffsets: &yOffsets)
         }
 
         contentSize.height = yOffsets.max()! + contentPadding.vertical - cellsPadding.vertical

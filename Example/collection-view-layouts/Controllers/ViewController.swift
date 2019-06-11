@@ -9,12 +9,15 @@
 import UIKit
 import collection_view_layouts
 
-private let fontSize: CGFloat = 17
-private let tagsPadding: CGFloat = 15
-private let minCellSize = 50
-private let maxCellSize = 150
-private let contentPadding: CGFloat = 10
-private let cellsPadding: CGFloat = 8
+enum LayoutType: Int {
+    case tags
+    case pinterest
+    case px500
+    case instagram
+    case flipboard
+    case facebook
+    case flickr
+}
 
 class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynamicLayoutDelegate {
     @IBOutlet private(set) weak var collectionView: UICollectionView!
@@ -22,8 +25,6 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
 
     private let pickerViewProvider = PickerViewProvider()
     private let collectionViewProvider = CollectionViewProvider()
-    private let data: [(section: Int, items: [String])] = [(0, Items.forCollectionViewFirstSection),
-                                                           (1, Items.forCollectionViewSecondSection)]
 
     private var cellSizes = [[CGSize]]()
     private var contentDynamicLayout: ContentDynamicLayout!
@@ -47,40 +48,52 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
         pickerView.delegate = pickerViewProvider
 
         pickerViewProvider.delegate = self
-        pickerViewProvider.insert(Items.forPickerView)
+        pickerViewProvider.items = ["Tags", "Pinterest", "500px", "Instagram", "Flipboard", "Facebook", "Flickr"]
     }
 
     private func setupCollectionView() {
         collectionView.dataSource = collectionViewProvider
 
-        data.forEach {
-            collectionViewProvider.insert($0.items, inSection: $0.section)
-        }
+        let firstSectionItems = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+                                 "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+                                 "eighteen", "nineteen", "twenty"]
+
+        let secondSectionItems = ["activity", "appstore", "calculator", "camera", "contacts", "clock", "facetime",
+                                 "health", "mail", "messages", "music", "notes", "phone", "photos", "podcasts",
+                                 "reminders", "safari", "settings", "shortcuts", "testflight", "wallet", "watch",
+                                 "weather"]
+
+
+        collectionViewProvider.items = [firstSectionItems, secondSectionItems]
+        collectionViewProvider.supplementaryItems = ["numbers", "apps"]
     }
 
     private func prepareCellSizes(withType type: LayoutType) {
-        data.forEach { data in
-            let items = data.items.map { item -> CGSize in
+        let range = 50...150
+        cellSizes.removeAll()
+
+        collectionViewProvider.items.forEach { items in
+            let sizes = items.map { item -> CGSize in
                 switch type {
                 case .tags:
                     let width = Double(self.collectionView.bounds.width)
-                    var size = UIFont.systemFont(ofSize: fontSize).sizeOfString(string: item, constrainedToWidth: width)
-                    size.width += tagsPadding
-                    size.height += tagsPadding
+                    var size = UIFont.systemFont(ofSize: 17).sizeOfString(string: item, constrainedToWidth: width)
+                    size.width += 15
+                    size.height += 15
                     return size
                 case .pinterest:
-                    let height = CGFloat(Int.random(in: minCellSize...maxCellSize))
+                    let height = CGFloat(Int.random(in: range))
                     return CGSize(width: 0.1, height: height)
                 case .px500:
-                    let width = CGFloat(Int.random(in: minCellSize...maxCellSize))
-                    let height = CGFloat(Int.random(in: minCellSize...maxCellSize))
+                    let width = CGFloat(Int.random(in: range))
+                    let height = CGFloat(Int.random(in: range))
                     return CGSize(width: width, height: height)
                 default:
                     return CGSize(width: 0.1, height: 0.1)
                 }
             }
 
-            cellSizes.insert(items, at: data.section)
+            cellSizes.append(sizes)
         }
     }
 
@@ -115,8 +128,8 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
 
         contentDynamicLayout.delegate = self
         contentDynamicLayout.contentAlign = .right
-        contentDynamicLayout.contentPadding = ItemsPadding(horizontal: contentPadding, vertical: contentPadding)
-        contentDynamicLayout.cellsPadding = ItemsPadding(horizontal: cellsPadding, vertical: cellsPadding)
+        contentDynamicLayout.contentPadding = ItemsPadding(horizontal: 10, vertical: 10)
+        contentDynamicLayout.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
 
         collectionView.collectionViewLayout = contentDynamicLayout
         collectionView.setContentOffset(CGPoint.zero, animated: false)
@@ -136,5 +149,13 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
 
     func cellSize(indexPath: IndexPath) -> CGSize {
         return cellSizes[indexPath.section][indexPath.row]
+    }
+
+    func headerHeight(indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+
+    func footerHeight(indexPath: IndexPath) -> CGFloat {
+        return 0
     }
 }

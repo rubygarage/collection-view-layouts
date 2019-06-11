@@ -27,7 +27,7 @@ public class InstagramLayout: ContentDynamicLayout {
 
     // MARK: - ContentDynamicLayout
     
-    override public func calculateCollectionViewCellsFrames() {
+    override public func calculateCollectionViewFrames() {
         guard let collectionView = collectionView else {
             return
         }
@@ -43,11 +43,11 @@ public class InstagramLayout: ContentDynamicLayout {
 
         switch gridType {
         case .defaultGrid:
-            calculateDefaultGridFrame()
+            calculateDefaultGridFrames()
         case .onePreviewCell:
-            calculateOnePreviewCellFrame()
+            calculateOnePreviewCellFrames()
         case .regularPreviewCell:
-            calculateRegularPreviewCellFrame()
+            calculateRegularPreviewCellFrames()
         }
 
         contentSize.height = yOffset + contentPadding.vertical
@@ -55,12 +55,16 @@ public class InstagramLayout: ContentDynamicLayout {
 
     // MARK: - Helpers
     
-    private func calculateDefaultGridFrame() {
+    private func calculateDefaultGridFrames() {
         guard let collectionView = collectionView else {
             return
         }
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffset: &yOffset)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
@@ -74,21 +78,29 @@ public class InstagramLayout: ContentDynamicLayout {
 
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(origin: origin, size: cellSize)
-                addCachedLayoutAttributes(attributes: attributes)
+                cach.append(attributes)
                 
                 if isLastItemInRow || isLastItemInSection {
                     yOffset += cellSide + cellsPadding.vertical
                 }
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffset: &yOffset)
         }
     }
     
-    private func calculateOnePreviewCellFrame() {
+    private func calculateOnePreviewCellFrames() {
         guard let collectionView = collectionView else {
             return
         }
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffset: &yOffset)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
@@ -127,17 +139,25 @@ public class InstagramLayout: ContentDynamicLayout {
                     }
                 }
                 
-                addCachedLayoutAttributes(attributes: attributes)
+                cach.append(attributes)
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffset: &yOffset)
         }
     }
     
-    private func calculateRegularPreviewCellFrame() {
+    private func calculateRegularPreviewCellFrames() {
         guard let collectionView = collectionView else {
             return
         }
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffset: &yOffset)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
             
             var patternSection = 0
@@ -153,7 +173,7 @@ public class InstagramLayout: ContentDynamicLayout {
                 
                 if patternSectionRemainder == 0 {
                     calculateRightPreviewSection(patternSection: &patternSection,
-                                                 item: itemRemainder,
+                                                 remainder: itemRemainder,
                                                  isLastItemInSection: isLastItemInSection,
                                                  attributes: attributes)
                 } else if patternSectionRemainder == 1 || patternSectionRemainder == 3 {
@@ -170,24 +190,28 @@ public class InstagramLayout: ContentDynamicLayout {
                                                 attributes: attributes)
                 }
                 
-                addCachedLayoutAttributes(attributes: attributes)
+                cach.append(attributes)
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffset: &yOffset)
         }
     }
     
     private func calculateRightPreviewSection(patternSection: inout Int,
-                                              item: Int,
+                                              remainder: Int,
                                               isLastItemInSection: Bool,
                                               attributes: UICollectionViewLayoutAttributes) {
 
-        if item == 0 {
+        if remainder == 0 {
             let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
             attributes.frame = CGRect(origin: origin, size: cellSize)
 
             if isLastItemInSection {
                 yOffset += cellSide + cellsPadding.vertical
             }
-        } else if item == 1 {
+        } else if remainder == 1 {
             let x = cellSide + contentPadding.horizontal + cellsPadding.horizontal
             let origin = CGPoint(x: x, y: yOffset)
             attributes.frame = CGRect(origin: origin, size: previewCellSize)

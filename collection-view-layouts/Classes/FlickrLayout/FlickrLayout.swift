@@ -16,7 +16,7 @@ public class FlickrLayout: ContentDynamicLayout {
 
     // MARK: - ContentDynamicLayout
     
-    override public func calculateCollectionViewCellsFrames() {
+    override public func calculateCollectionViewFrames() {
         guard let collectionView = collectionView else {
             return
         }
@@ -36,6 +36,10 @@ public class FlickrLayout: ContentDynamicLayout {
         var yOffset = contentPadding.vertical
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffset: &yOffset)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
@@ -70,8 +74,12 @@ public class FlickrLayout: ContentDynamicLayout {
                     yOffset += largeHorizontalCellHeight + cellsPadding.vertical
                 }
                 
-                addCachedLayoutAttributes(attributes: attributes)
+                cach.append(attributes)
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffset: &yOffset)
         }
         
         contentSize.height = yOffset + contentPadding.vertical

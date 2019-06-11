@@ -12,7 +12,7 @@ public class TagsLayout: ContentDynamicLayout {
 
     // MARK: - ContentDynamicLayout
 
-    override public func calculateCollectionViewCellsFrames() {
+    override public func calculateCollectionViewFrames() {
         guard let collectionView = collectionView, let delegate = delegate else {
             return
         }
@@ -26,6 +26,10 @@ public class TagsLayout: ContentDynamicLayout {
         var yOffset = contentPadding.vertical
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffset: &yOffset)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
@@ -58,7 +62,7 @@ public class TagsLayout: ContentDynamicLayout {
                     xOffset -= cellSize.width + cellsPadding.horizontal
                 }
 
-                addCachedLayoutAttributes(attributes: attributes)
+                cach.append(attributes)
 
                 if isLastItem {
                     yOffset += cellSize.height + cellsPadding.vertical
@@ -67,6 +71,10 @@ public class TagsLayout: ContentDynamicLayout {
                         : contentSize.width - contentPadding.horizontal
                 }
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffset: &yOffset)
         }
 
         contentSize.height = yOffset + contentPadding.vertical

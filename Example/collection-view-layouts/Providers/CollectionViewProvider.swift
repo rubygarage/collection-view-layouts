@@ -8,19 +8,14 @@
 
 import UIKit
 
-private let cellIdentifier = "ContentCellIdentifier"
-
 class CollectionViewProvider: NSObject, UICollectionViewDataSource {
-    private var items = [[String]]()
-
-    func insert(_ items: [String], inSection section: Int = 0) {
-        self.items.insert(items, at: section)
-    }
+    var items = [[String]]()
+    var supplementaryItems = [String]()
 
     // MARK: - UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return supplementaryItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,18 +23,42 @@ class CollectionViewProvider: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentCellIdentifier", for: indexPath)
 
         if let cell = cell as? ContentCell {
             let item = items[indexPath.section][indexPath.row]
             cell.populate(with: item)
-
-            // TODO: Remove it
-            if indexPath.section == 1 {
-                cell.backgroundColor = .gray
-            }
         }
         
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+
+        if kind == UICollectionView.elementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "HeaderViewIdentifier",
+                                                                             for: indexPath)
+
+            if let headerView = headerView as? HeaderView {
+                let item = supplementaryItems[indexPath.section]
+                headerView.populate(with: item)
+            }
+
+            return headerView
+        } else {
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "FooterViewIdentifier",
+                                                                             for: indexPath)
+
+            if let footerView = footerView as? FooterView {
+                let item = supplementaryItems[indexPath.section]
+                footerView.populate(with: item)
+            }
+
+            return footerView
+        }
     }
 }

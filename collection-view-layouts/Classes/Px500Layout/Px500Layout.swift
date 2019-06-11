@@ -31,7 +31,7 @@ public class Px500Layout: ContentDynamicLayout {
 
     // MARK: - ContentDynamicLayout
     
-    override public func calculateCollectionViewCellsFrames() {
+    override public func calculateCollectionViewFrames() {
         guard let collectionView = collectionView, let delegate = delegate else {
             return
         }
@@ -43,6 +43,10 @@ public class Px500Layout: ContentDynamicLayout {
         var yOffset = contentPadding.vertical
 
         for section in 0..<collectionView.numberOfSections {
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                              section: section,
+                                              yOffset: &yOffset)
+
             let itemsCount = collectionView.numberOfItems(inSection: section)
             prepareLayoutConfiguration(forSection: section, withItemsCount: itemsCount)
 
@@ -59,7 +63,7 @@ public class Px500Layout: ContentDynamicLayout {
                     let indexPath = IndexPath(item: item, section: section)
                     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                     attributes.frame = CGRect(x: xOffset, y: yOffset, width: cellWidth, height: cellHeight)
-                    addCachedLayoutAttributes(attributes: attributes)
+                    cach.append(attributes)
 
                     item += 1
                     xOffset += cellWidth + cellsPadding.horizontal
@@ -67,6 +71,10 @@ public class Px500Layout: ContentDynamicLayout {
 
                 yOffset += cellHeight + cellsPadding.vertical
             }
+
+            addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                              section: section,
+                                              yOffset: &yOffset)
         }
 
         contentSize.height = yOffset + contentPadding.vertical
