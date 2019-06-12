@@ -78,8 +78,8 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
                 case .tags:
                     let width = Double(self.collectionView.bounds.width)
                     var size = UIFont.systemFont(ofSize: 17).sizeOfString(string: item, constrainedToWidth: width)
-                    size.width += 15
-                    size.height += 15
+                    size.width += 30
+                    size.height += 20
                     return size
                 case .pinterest:
                     let height = CGFloat(Int.random(in: range))
@@ -101,6 +101,9 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
         switch type {
         case .tags:
             contentDynamicLayout = TagsLayout()
+            if let tagsLayout = contentDynamicLayout as? TagsLayout {
+                tagsLayout.scrollDirection = .horizontal
+            }
         case .pinterest:
             contentDynamicLayout = PinterestLayout()
             if let pinterestLayout = contentDynamicLayout as? PinterestLayout {
@@ -153,9 +156,5 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
 
     func headerHeight(indexPath: IndexPath) -> CGFloat {
         return 44
-    }
-
-    func footerHeight(indexPath: IndexPath) -> CGFloat {
-        return 0
     }
 }

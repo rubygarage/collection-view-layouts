@@ -35,12 +35,12 @@ public class FlipboardLayout: ContentDynamicLayout {
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
-                let remainder = item % patternTotalCellsCount
+                let patternCell = item % patternTotalCellsCount
                 let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
-                if remainder == 0 {
+                if patternCell == 0 {
                     let x = contentAlign == .left
                         ? contentPadding.horizontal
                         : cellSide + cellsPadding.horizontal + contentPadding.horizontal
@@ -51,7 +51,7 @@ public class FlipboardLayout: ContentDynamicLayout {
                     if isLastItem {
                         yOffset += cellSide + cellsPadding.vertical
                     }
-                } else if remainder == 1 {
+                } else if patternCell == 1 {
                     let x = contentAlign == .left
                         ? 2 * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
                         : contentPadding.horizontal
@@ -60,14 +60,14 @@ public class FlipboardLayout: ContentDynamicLayout {
                     attributes.frame = CGRect(origin: origin, size: squareCellSize)
                     
                     yOffset += cellSide + cellsPadding.vertical
-                } else if remainder == 2 || remainder == 5 {
+                } else if patternCell == 2 || patternCell == 5 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: squareCellSize)
 
                     if isLastItem {
                         yOffset += cellSide + cellsPadding.vertical
                     }
-                } else if remainder == 3 || remainder == 6 {
+                } else if patternCell == 3 || patternCell == 6 {
                     let x = cellSide + cellsPadding.horizontal + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: squareCellSize)
@@ -75,7 +75,7 @@ public class FlipboardLayout: ContentDynamicLayout {
                     if isLastItem {
                         yOffset += cellSide + cellsPadding.vertical
                     }
-                } else if remainder == 4 || remainder == 7 {
+                } else if patternCell == 4 || patternCell == 7 {
                     let x = 2 * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: squareCellSize)
@@ -83,7 +83,7 @@ public class FlipboardLayout: ContentDynamicLayout {
                     yOffset += cellSide + cellsPadding.vertical
                 }
                 
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
             }
 
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,

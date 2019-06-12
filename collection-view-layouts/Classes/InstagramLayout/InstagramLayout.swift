@@ -68,17 +68,17 @@ public class InstagramLayout: ContentDynamicLayout {
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
-                let remainder = item % columnsCount
-                let isLastItemInRow = remainder == 2
+                let column = item % columnsCount
+                let isLastItemInRow = column == 2
                 let isLastItemInSection = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
 
-                let x = CGFloat(remainder) * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
+                let x = CGFloat(column) * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
                 let origin = CGPoint(x: x, y: yOffset)
 
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(origin: origin, size: cellSize)
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
                 
                 if isLastItemInRow || isLastItemInSection {
                     yOffset += cellSide + cellsPadding.vertical
@@ -104,8 +104,8 @@ public class InstagramLayout: ContentDynamicLayout {
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
-                let remainder = item % columnsCount
-                let isLastItemInRow = remainder == 2
+                let column = item % columnsCount
+                let isLastItemInRow = column == 2
                 let isLastItemInSection = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -130,7 +130,7 @@ public class InstagramLayout: ContentDynamicLayout {
 
                     yOffset += cellSide + cellsPadding.vertical
                 } else {
-                    let x = CGFloat(remainder) * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
+                    let x = CGFloat(column) * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: cellSize)
                     
@@ -139,7 +139,7 @@ public class InstagramLayout: ContentDynamicLayout {
                     }
                 }
                 
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
             }
 
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
@@ -190,7 +190,7 @@ public class InstagramLayout: ContentDynamicLayout {
                                                 attributes: attributes)
                 }
                 
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
             }
 
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,

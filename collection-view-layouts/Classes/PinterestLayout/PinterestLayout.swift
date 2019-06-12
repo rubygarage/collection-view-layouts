@@ -39,6 +39,7 @@ public class PinterestLayout: ContentDynamicLayout {
             for item in 0 ..< itemsCount {
                 let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
+                
                 let cellhHeight = delegate.cellSize(indexPath: indexPath).height
                 let cellSize = CGSize(width: cellWidth, height: cellhHeight)
 
@@ -46,12 +47,12 @@ public class PinterestLayout: ContentDynamicLayout {
                 let column = yOffsets.firstIndex(of: y)!
                 let x = CGFloat(column) * (cellWidth + cellsPadding.horizontal) + contentPadding.horizontal
                 let origin = CGPoint(x: x, y: y)
-
-                yOffsets[column] += cellhHeight + cellsPadding.vertical
-
+                
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(origin: origin, size: cellSize)
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
+
+                yOffsets[column] += cellhHeight + cellsPadding.vertical
 
                 if isLastItem {
                     let y = yOffsets.max()!

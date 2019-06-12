@@ -61,9 +61,10 @@ public class Px500Layout: ContentDynamicLayout {
 
                 for cellWidth in convertToRelativeCellsWidths(cellsSizes) {
                     let indexPath = IndexPath(item: item, section: section)
+                    
                     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                     attributes.frame = CGRect(x: xOffset, y: yOffset, width: cellWidth, height: cellHeight)
-                    cach.append(attributes)
+                    cachedAttributes.append(attributes)
 
                     item += 1
                     xOffset += cellWidth + cellsPadding.horizontal

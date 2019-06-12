@@ -37,32 +37,32 @@ public class FacebookLayout: ContentDynamicLayout {
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
-                let remainder = item % patternTotalCellsCount
+                let patternCell = item % patternTotalCellsCount
                 let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
-                if remainder == 0 {
+                if patternCell == 0 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: largeCellSize)
 
                     if isLastItem {
                         yOffset += largeCellSide + cellsPadding.vertical
                     }
-                } else if remainder == 1 {
+                } else if patternCell == 1 {
                     let x = largeCellSide + contentPadding.horizontal + cellsPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: largeCellSize)
 
                     yOffset += largeCellSide + cellsPadding.vertical
-                } else if remainder == 2 {
+                } else if patternCell == 2 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallCellSize)
 
                     if isLastItem {
                         yOffset += smallCellSide + cellsPadding.vertical
                     }
-                } else if remainder == 3 {
+                } else if patternCell == 3 {
                     let x = smallCellSide + cellsPadding.horizontal + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallCellSize)
@@ -70,7 +70,7 @@ public class FacebookLayout: ContentDynamicLayout {
                     if isLastItem {
                         yOffset += smallCellSide + cellsPadding.vertical
                     }
-                } else if remainder == 4 {
+                } else if patternCell == 4 {
                     let x = 2 * (smallCellSide + cellsPadding.horizontal) + contentPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallCellSize)
@@ -78,7 +78,7 @@ public class FacebookLayout: ContentDynamicLayout {
                     yOffset += smallCellSide + cellsPadding.vertical
                 }
                 
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
             }
 
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,

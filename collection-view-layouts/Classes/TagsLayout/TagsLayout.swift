@@ -8,11 +8,28 @@
 
 import UIKit
 
+public enum ScrollDirection : Int {
+    case vertical
+    case horizontal
+}
+
 public class TagsLayout: ContentDynamicLayout {
+    public var scrollDirection = ScrollDirection.vertical
 
     // MARK: - ContentDynamicLayout
 
     override public func calculateCollectionViewFrames() {
+        switch scrollDirection {
+        case .vertical:
+            calculateVerticalScrollDirection()
+        case .horizontal:
+            calculateHorizontalScrollDirection()
+        }
+    }
+
+    // MARK: - Helpers
+
+    func calculateVerticalScrollDirection() {
         guard let collectionView = collectionView, let delegate = delegate else {
             return
         }
@@ -62,7 +79,7 @@ public class TagsLayout: ContentDynamicLayout {
                     xOffset -= cellSize.width + cellsPadding.horizontal
                 }
 
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
 
                 if isLastItem {
                     yOffset += cellSize.height + cellsPadding.vertical
@@ -78,5 +95,64 @@ public class TagsLayout: ContentDynamicLayout {
         }
 
         contentSize.height = yOffset + contentPadding.vertical
+    }
+
+    func calculateHorizontalScrollDirection() {
+        guard let collectionView = collectionView, let delegate = delegate else {
+            return
+        }
+
+        contentSize.height = collectionView.frame.size.height
+
+        var xOffset = contentPadding.horizontal
+        var yOffset = contentPadding.vertical
+
+        for section in 0..<collectionView.numberOfSections {
+            let itemsCount = collectionView.numberOfItems(inSection: section)
+
+            var rowsCount = 0
+            var xOffsets = [CGFloat]()
+
+            for item in 0 ..< itemsCount {
+                let isLastItem = item == itemsCount - 1
+                let indexPath = IndexPath(item: item, section: section)
+                let cellSize = delegate.cellSize(indexPath: indexPath)
+
+                if yOffset + cellSize.height + cellsPadding.vertical > contentSize.height {
+                    yOffset = contentPadding.vertical
+                    rowsCount = item
+                }
+
+                let isFirstColumn = rowsCount == 0
+                let row = isFirstColumn ? 0 : item % rowsCount
+                let isValidRow = row < xOffsets.count
+
+                let x = isFirstColumn || !isValidRow ? xOffset : xOffsets[row]
+                let origin = CGPoint(x: x, y: yOffset)
+
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                attributes.frame = CGRect(origin: origin, size: cellSize)
+                cachedAttributes.append(attributes)
+
+                if isFirstColumn {
+                    xOffsets.append(xOffset + cellSize.width + cellsPadding.horizontal)
+                } else if isValidRow {
+                    let x = xOffsets[row]
+                    xOffsets[row] = x + cellSize.width + cellsPadding.horizontal
+                }
+
+                yOffset += cellSize.height + cellsPadding.vertical
+
+                if isLastItem {
+                    xOffset = xOffsets.max()!
+                    yOffset = contentPadding.vertical
+
+                    xOffsets.removeAll()
+                    rowsCount = 0
+                }
+            }
+        }
+
+        contentSize.width = xOffset + contentPadding.horizontal
     }
 }

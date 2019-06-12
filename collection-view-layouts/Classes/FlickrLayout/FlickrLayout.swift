@@ -43,38 +43,38 @@ public class FlickrLayout: ContentDynamicLayout {
             let itemsCount = collectionView.numberOfItems(inSection: section)
 
             for item in 0 ..< itemsCount {
-                let remainder = item % patternTotalCellsCount
+                let patternCell = item % patternTotalCellsCount
                 let isLastItem = item == itemsCount - 1
                 let indexPath = IndexPath(item: item, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
-                if remainder == 0 {
+                if patternCell == 0 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallHorizontalCellSize)
 
                     if isLastItem {
                         yOffset += smallHorizontalCellHeight + cellsPadding.vertical
                     }
-                } else if remainder == 1 {
+                } else if patternCell == 1 {
                     let x = smallCellWidth + contentPadding.horizontal + cellsPadding.horizontal
                     let origin = CGPoint(x: x, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallVerticalCellSize)
 
                     yOffset += isLastItem ? smallVerticalCellHeight : smallHorizontalCellHeight
                     yOffset += cellsPadding.vertical
-                } else if remainder == 2 {
+                } else if patternCell == 2 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: smallHorizontalCellSize)
 
                     yOffset += smallHorizontalCellHeight + cellsPadding.vertical
-                } else if remainder == 3 {
+                } else if patternCell == 3 {
                     let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
                     attributes.frame = CGRect(origin: origin, size: largeHorizontalCellSize)
 
                     yOffset += largeHorizontalCellHeight + cellsPadding.vertical
                 }
                 
-                cach.append(attributes)
+                cachedAttributes.append(attributes)
             }
 
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,

@@ -42,7 +42,7 @@ public class ContentDynamicLayout: UICollectionViewLayout {
 
     public weak var delegate: ContentDynamicLayoutDelegate?
 
-    var cach = [UICollectionViewLayoutAttributes]()
+    var cachedAttributes = [UICollectionViewLayoutAttributes]()
     var contentSize: CGSize = .zero
 
     var contentWidthWithoutPadding: CGFloat {
@@ -58,12 +58,12 @@ public class ContentDynamicLayout: UICollectionViewLayout {
     override public func prepare() {
         super.prepare()
 
-        cach.removeAll()
+        cachedAttributes.removeAll()
         calculateCollectionViewFrames()
     }
 
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return cach.filter { $0.frame.intersects(rect) }
+        return cachedAttributes.filter { $0.frame.intersects(rect) }
     }
 
     // MARK: - Methods for subclasses
@@ -100,7 +100,7 @@ public class ContentDynamicLayout: UICollectionViewLayout {
 
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: kind, with: indexPath)
         attributes.frame = CGRect(origin: origin, size: size)
-        cach.append(attributes)
+        cachedAttributes.append(attributes)
 
         yOffset += height + cellsPadding.vertical
     }
