@@ -11,7 +11,7 @@ private let patternTotalCellsCount = 5
 private let patternLargeCellsCount = 2
 private let patternSmallCellsCount = 3
 
-public class FacebookLayout: ContentDynamicLayout {
+public class FacebookLayout: BaseLayout {
 
     // MARK: - ContentDynamicLayout
 
@@ -86,6 +86,6 @@ public class FacebookLayout: ContentDynamicLayout {
                                               yOffset: &yOffset)
         }
         
-        contentSize.height = yOffset + contentPadding.vertical
+        contentSize.height = yOffset - cellsPadding.vertical + contentPadding.vertical
     }
 }

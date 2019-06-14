@@ -19,7 +19,7 @@ enum LayoutType: Int {
     case flickr
 }
 
-class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynamicLayoutDelegate {
+class ViewController: UIViewController, PickerViewProviderDelegate, LayoutDelegate {
     @IBOutlet private(set) weak var collectionView: UICollectionView!
     @IBOutlet private(set) weak var pickerView: UIPickerView!
 
@@ -27,7 +27,7 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
     private let collectionViewProvider = CollectionViewProvider()
 
     private var cellSizes = [[CGSize]]()
-    private var contentDynamicLayout: ContentDynamicLayout!
+    private var layout: BaseLayout!
 
     // MARK: - View controller lifecycle
 
@@ -100,41 +100,41 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
     private func showLayout(withType type: LayoutType) {
         switch type {
         case .tags:
-            contentDynamicLayout = TagsLayout()
-            if let tagsLayout = contentDynamicLayout as? TagsLayout {
-                tagsLayout.scrollDirection = .horizontal
-            }
+            layout = TagsLayout()
+            // Tags layout supports next configs
+            // layout.contentAlign = .right
+            // layout.scrollDirection = .horizontal
         case .pinterest:
-            contentDynamicLayout = PinterestLayout()
-            if let pinterestLayout = contentDynamicLayout as? PinterestLayout {
-                pinterestLayout.columnsCount = 3
-            }
+            layout = PinterestLayout()
+            // Pinterest layout supports next configs
+            // layout.columnsCount = 3
         case .px500:
-            contentDynamicLayout = Px500Layout()
-            if let px500Layout = contentDynamicLayout as? Px500Layout {
-                px500Layout.minCellsInRow = .two
-                px500Layout.maxCellsInRow = .two
-                px500Layout.visibleRowsCount = 6
-            }
+            layout = Px500Layout()
+            // 500px layout supports next configs
+            // layout.minCellsInRow = .two
+            // layout.maxCellsInRow = .two
+            // layout.visibleRowsCount = 6
         case .instagram:
-            contentDynamicLayout = InstagramLayout()
-            if let instagramLayout = contentDynamicLayout as? InstagramLayout {
-                instagramLayout.gridType = .onePreviewCell
-            }
+            layout = InstagramLayout()
+            // Instagram layout supports next configs
+            // layout.gridType = .onePreviewCell
         case .flipboard:
-            contentDynamicLayout = FlipboardLayout()
+            layout = FlipboardLayout()
+            // Flipboard layout supports next configs
+            // layout.contentAlign = .right
         case .facebook:
-            contentDynamicLayout = FacebookLayout()
+            layout = FacebookLayout()
         case .flickr:
-            contentDynamicLayout = FlickrLayout()
+            layout = FlickrLayout()
         }
 
-        contentDynamicLayout.delegate = self
-        contentDynamicLayout.contentAlign = .right
-        contentDynamicLayout.contentPadding = ItemsPadding(horizontal: 10, vertical: 10)
-        contentDynamicLayout.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
+        layout.delegate = self
 
-        collectionView.collectionViewLayout = contentDynamicLayout
+        // All layouts support this configs
+        layout.contentPadding = ItemsPadding(horizontal: 15, vertical: 15)
+        layout.cellsPadding = ItemsPadding(horizontal: 10, vertical: 10)
+
+        collectionView.collectionViewLayout = layout
         collectionView.setContentOffset(CGPoint.zero, animated: false)
         collectionView.reloadData()
     }
@@ -148,13 +148,17 @@ class ViewController: UIViewController, PickerViewProviderDelegate, ContentDynam
         }
     }
 
-    // MARK: - ContentDynamicLayoutDelegate
+    // MARK: - LayoutDelegate
 
     func cellSize(indexPath: IndexPath) -> CGSize {
         return cellSizes[indexPath.section][indexPath.row]
     }
 
     func headerHeight(indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+
+    func footerHeight(indexPath: IndexPath) -> CGFloat {
         return 44
     }
 }

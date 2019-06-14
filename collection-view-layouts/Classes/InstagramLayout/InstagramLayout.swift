@@ -17,7 +17,7 @@ public enum GridType {
     case regularPreviewCell
 }
 
-public class InstagramLayout: ContentDynamicLayout {
+public class InstagramLayout: BaseLayout {
     public var gridType: GridType = .regularPreviewCell
 
     private var cellSide: CGFloat = 0

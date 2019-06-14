@@ -10,7 +10,7 @@ import UIKit
 private let patternTotalCellsCount = 8
 private let patternColumnsCount = 3
 
-public class FlipboardLayout: ContentDynamicLayout {
+public class FlipboardLayout: ContentAlignableLayout {
 
     // MARK: - ContentDynamicLayout
 

@@ -23,7 +23,7 @@ public enum MaxCellsInRow: Int {
     case three
 }
 
-public class Px500Layout: ContentDynamicLayout {
+public class Px500Layout: BaseLayout {
     public var minCellsInRow = MinCellsInRow.one
     public var maxCellsInRow = MaxCellsInRow.three
     public var visibleRowsCount = 5

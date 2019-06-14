@@ -12,7 +12,7 @@ private let patternColumnsCount = 2
 private let visibleSmallRowsCount = 5
 private let visibleLargeRowsCount = 4
 
-public class FlickrLayout: ContentDynamicLayout {
+public class FlickrLayout: BaseLayout {
 
     // MARK: - ContentDynamicLayout
     

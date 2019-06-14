@@ -1,5 +1,5 @@
 //
-//  ContentDynamicLayout.swift
+//  BaseLayout.swift
 //  collection-view-layouts
 //
 //  Created by sergey on 2/12/18.
@@ -8,17 +8,12 @@
 
 import UIKit
 
-@objc public protocol ContentDynamicLayoutDelegate: class {
+@objc public protocol LayoutDelegate: class {
     func cellSize(indexPath: IndexPath) -> CGSize
     @objc optional func headerHeight(indexPath: IndexPath) -> CGFloat
     @objc optional func headerWidth(indexPath: IndexPath) -> CGFloat
     @objc optional func footerHeight(indexPath: IndexPath) -> CGFloat
     @objc optional func footerWidth(indexPath: IndexPath) -> CGFloat
-}
-
-public enum DynamicContentAlign {
-    case left
-    case right
 }
 
 public struct ItemsPadding {
@@ -35,12 +30,11 @@ public struct ItemsPadding {
     }
 }
 
-public class ContentDynamicLayout: UICollectionViewLayout {
-    public var contentAlign: DynamicContentAlign = .left
+public class BaseLayout: UICollectionViewLayout {
     public var contentPadding: ItemsPadding = .zero
     public var cellsPadding: ItemsPadding = .zero
 
-    public weak var delegate: ContentDynamicLayoutDelegate?
+    public weak var delegate: LayoutDelegate?
 
     var cachedAttributes = [UICollectionViewLayoutAttributes]()
     var contentSize: CGSize = .zero
@@ -84,7 +78,7 @@ public class ContentDynamicLayout: UICollectionViewLayout {
         if kind == UICollectionView.elementKindSectionHeader {
             delegateHeight = delegate.headerHeight?(indexPath: indexPath)
             delegateWidth = delegate.headerWidth?(indexPath: indexPath)
-        } else {
+        } else if kind == UICollectionView.elementKindSectionFooter {
             delegateHeight = delegate.footerHeight?(indexPath: indexPath)
             delegateWidth = delegate.footerWidth?(indexPath: indexPath)
         }

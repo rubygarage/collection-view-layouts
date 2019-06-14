@@ -13,7 +13,7 @@ public enum ScrollDirection : Int {
     case horizontal
 }
 
-public class TagsLayout: ContentDynamicLayout {
+public class TagsLayout: ContentAlignableLayout {
     public var scrollDirection = ScrollDirection.vertical
 
     // MARK: - ContentDynamicLayout

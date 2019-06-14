@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PinterestLayout: ContentDynamicLayout {
+public class PinterestLayout: BaseLayout {
     public var columnsCount = 2
 
     // MARK: - ContentDynamicLayout

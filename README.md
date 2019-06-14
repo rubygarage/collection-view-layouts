@@ -60,7 +60,7 @@ pod 'collection-view-layouts/FlickrLayout'
 
 ## Requirements
 
-iOS: 9.0+  
+iOS: 11.0+  
 Swift: 5.0  
 CocoaPods: for iOS  
 
@@ -72,21 +72,20 @@ To run the example project, clone the repo, and run pod install from the Example
 Configuration of custom layouts is pretty easy:
 
 ```swift
-var contentDynamicLayout: ContentDynamicLayout = TagsLayout()
+var layout: BaseLayout = TagsLayout()
 
-contentDynamicLayout.delegate = self
-contentDynamicLayout.delegate = ItemsPadding(horizontal: 10, vertical: 10)
-contentDynamicLayout.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
-contentDynamicLayout.contentAlign = .left
+layout.delegate = self
+layout.delegate = ItemsPadding(horizontal: 10, vertical: 10)
+layout.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
 
-collectionView.collectionViewLayout = contentDynamicLayout
+collectionView.collectionViewLayout = layout
 collectionView.reloadData()
 ```
 
-Also, you have to implement ContentDynamicLayoutDelegate protocol:
+Also, you have to implement LayoutDelegate protocol:
 
 ```swift
-public protocol ContentDynamicLayoutDelegate: class {
+public protocol LayoutDelegate: class {
     func cellSize(indexPath: IndexPath) -> CGSize
 }
 
