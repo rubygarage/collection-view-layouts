@@ -43,23 +43,19 @@ public class InstagramLayout: BaseLayout {
 
         switch gridType {
         case .defaultGrid:
-            calculateDefaultGridFrames()
+            calculateDefaultGridFrames(collectionView)
         case .onePreviewCell:
-            calculateOnePreviewCellFrames()
+            calculateOnePreviewCellFrames(collectionView)
         case .regularPreviewCell:
-            calculateRegularPreviewCellFrames()
+            calculateRegularPreviewCellFrames(collectionView)
         }
 
-        contentSize.height = yOffset + contentPadding.vertical
+        contentSize.height = yOffset - cellsPadding.vertical + contentPadding.vertical
     }
 
     // MARK: - Helpers
     
-    private func calculateDefaultGridFrames() {
-        guard let collectionView = collectionView else {
-            return
-        }
-
+    private func calculateDefaultGridFrames(_ collectionView: UICollectionView) {
         for section in 0..<collectionView.numberOfSections {
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                               section: section,
@@ -91,11 +87,7 @@ public class InstagramLayout: BaseLayout {
         }
     }
     
-    private func calculateOnePreviewCellFrames() {
-        guard let collectionView = collectionView else {
-            return
-        }
-
+    private func calculateOnePreviewCellFrames(_ collectionView: UICollectionView) {
         for section in 0..<collectionView.numberOfSections {
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                               section: section,
@@ -148,11 +140,7 @@ public class InstagramLayout: BaseLayout {
         }
     }
     
-    private func calculateRegularPreviewCellFrames() {
-        guard let collectionView = collectionView else {
-            return
-        }
-
+    private func calculateRegularPreviewCellFrames(_ collectionView: UICollectionView) {
         for section in 0..<collectionView.numberOfSections {
             addAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                               section: section,

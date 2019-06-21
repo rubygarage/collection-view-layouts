@@ -82,6 +82,6 @@ public class FlickrLayout: BaseLayout {
                                               yOffset: &yOffset)
         }
         
-        contentSize.height = yOffset + contentPadding.vertical
+        contentSize.height = yOffset - cellsPadding.vertical + contentPadding.vertical
     }
 }

@@ -41,12 +41,9 @@ public class FlipboardLayout: ContentAlignableLayout {
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 
                 if patternCell == 0 {
-                    let x = contentAlign == .left
-                        ? contentPadding.horizontal
-                        : cellSide + cellsPadding.horizontal + contentPadding.horizontal
-
-                    let origin = CGPoint(x: x, y: yOffset)
-                    attributes.frame = CGRect(origin: origin, size: rectangleCellSize)
+                    let origin = CGPoint(x: contentPadding.horizontal, y: yOffset)
+                    let size = contentAlign == .left ? rectangleCellSize : squareCellSize
+                    attributes.frame = CGRect(origin: origin, size: size)
 
                     if isLastItem {
                         yOffset += cellSide + cellsPadding.vertical
@@ -54,10 +51,11 @@ public class FlipboardLayout: ContentAlignableLayout {
                 } else if patternCell == 1 {
                     let x = contentAlign == .left
                         ? 2 * (cellSide + cellsPadding.horizontal) + contentPadding.horizontal
-                        : contentPadding.horizontal
+                        : contentPadding.horizontal + cellSide + cellsPadding.horizontal
 
                     let origin = CGPoint(x: x, y: yOffset)
-                    attributes.frame = CGRect(origin: origin, size: squareCellSize)
+                    let size = contentAlign == .left ? squareCellSize : rectangleCellSize
+                    attributes.frame = CGRect(origin: origin, size: size)
                     
                     yOffset += cellSide + cellsPadding.vertical
                 } else if patternCell == 2 || patternCell == 5 {
@@ -91,6 +89,6 @@ public class FlipboardLayout: ContentAlignableLayout {
                                               yOffset: &yOffset)
         }
         
-        contentSize.height = yOffset + contentPadding.vertical
+        contentSize.height = yOffset - cellsPadding.vertical + contentPadding.vertical
     }
 }

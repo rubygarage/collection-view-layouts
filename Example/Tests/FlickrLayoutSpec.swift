@@ -1,8 +1,8 @@
 //
-//  FacebookLayoutSpec.swift
+//  FlickrLayoutSpec.swift
 //  collection-view-layouts_Tests
 //
-//  Created by Radyslav Krechet on 6/13/19.
+//  Created by Radyslav Krechet on 6/21/19.
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
@@ -11,13 +11,13 @@ import Nimble
 
 @testable import collection_view_layouts
 
-class FacebookLayoutSpec: QuickSpec {
+class FlickrLayoutSpec: QuickSpec {
     override func spec() {
-        describe("Facebook layout") {
-            var layout: FacebookLayoutMock!
+        describe("Flickr layout") {
+            var layout: FlickrLayoutMock!
 
             beforeEach {
-                layout = FacebookLayoutMock()
+                layout = FlickrLayoutMock()
             }
 
             describe("should calculate frames") {
@@ -35,7 +35,7 @@ class FacebookLayoutSpec: QuickSpec {
                         layout.contentPadding = ItemsPadding(horizontal: 15, vertical: 15)
                         layout.cellsPadding = ItemsPadding(horizontal: 10, vertical: 10)
 
-                        let items = ["one", "two", "three", "four", "five"]
+                        let items = ["one", "two", "three", "four"]
                         let supplementaryItems = ["numbers"]
                         let collectionViewProvider = CollectionViewProvider()
                         collectionViewProvider.items = [items]
@@ -50,53 +50,51 @@ class FacebookLayoutSpec: QuickSpec {
                         expect(layout.cachedAttributes.count) == items.count
                         expect(layout.calledFunctions.count) == supplementaryItems.count * 2
 
-                        let largeCellSide = (layout.contentWidthWithoutPadding - layout.cellsPadding.horizontal)
-                            / CGFloat(2)
+                        let heightWithoutPadding = collectionView.frame.height - 2 * layout.contentPadding.vertical
+                            - layout.cellsPadding.vertical
 
-                        let smallCellSide = (layout.contentWidthWithoutPadding - 2 * layout.cellsPadding.horizontal)
-                            / CGFloat(3)
+                        let largeHorizontalCellHeight = heightWithoutPadding / CGFloat(4)
+                        let smallHorizontalCellHeight = heightWithoutPadding / CGFloat(5)
+                        let smallVerticalCellHeight = 2 * smallHorizontalCellHeight + layout.cellsPadding.vertical
+                        let smallCellWidth = (layout.contentWidthWithoutPadding - layout.cellsPadding.horizontal)
+                            / CGFloat(2)
 
                         let firstCellFrame = CGRect(x: layout.contentPadding.horizontal,
                                                     y: layout.contentPadding.vertical,
-                                                    width: largeCellSide,
-                                                    height: largeCellSide)
+                                                    width: smallCellWidth,
+                                                    height: smallHorizontalCellHeight)
 
-                        let secondCellX = layout.contentPadding.horizontal + largeCellSide
+                        let secondCellX = layout.contentPadding.horizontal + smallCellWidth
                             + layout.cellsPadding.horizontal
 
                         let secondCellFrame = CGRect(x: secondCellX,
                                                      y: layout.contentPadding.vertical,
-                                                     width: largeCellSide,
-                                                     height: largeCellSide)
+                                                     width: smallCellWidth,
+                                                     height: smallVerticalCellHeight)
 
-                        let smallCellsY = layout.contentPadding.vertical + largeCellSide + layout.cellsPadding.vertical
-                        
+                        let thirdCellY = layout.contentPadding.vertical + smallHorizontalCellHeight
+                            + layout.cellsPadding.vertical
+
                         let thirdCellFrame = CGRect(x: layout.contentPadding.horizontal,
-                                                    y: smallCellsY,
-                                                    width: smallCellSide,
-                                                    height: smallCellSide)
+                                                    y: thirdCellY,
+                                                    width: smallCellWidth,
+                                                    height: smallHorizontalCellHeight)
 
-                        let fourthCellX = layout.contentPadding.horizontal + smallCellSide
-                            + layout.cellsPadding.horizontal
+                        let fourthCellY = layout.contentPadding.vertical + smallVerticalCellHeight
+                            + layout.cellsPadding.vertical
 
-                        let fourthCellFrame = CGRect(x: fourthCellX,
-                                                     y: smallCellsY,
-                                                     width: smallCellSide,
-                                                     height: smallCellSide)
+                        let fourthCellFrame = CGRect(x: layout.contentPadding.horizontal,
+                                                     y: fourthCellY,
+                                                     width: layout.contentWidthWithoutPadding,
+                                                     height: largeHorizontalCellHeight)
 
-                        let fifthCellFrame = CGRect(x: fourthCellX + smallCellSide + layout.cellsPadding.horizontal,
-                                                    y: smallCellsY,
-                                                    width: smallCellSide,
-                                                    height: smallCellSide)
-
-                        let cellsFrames = [firstCellFrame, secondCellFrame, thirdCellFrame, fourthCellFrame,
-                                           fifthCellFrame]
+                        let cellsFrames = [firstCellFrame, secondCellFrame, thirdCellFrame, fourthCellFrame]
 
                         for index in 0..<layout.cachedAttributes.count {
                             expect(layout.cachedAttributes[index].frame).to(beCloseTo(cellsFrames[index]))
                         }
 
-                        let height = smallCellsY + smallCellSide + layout.contentPadding.vertical
+                        let height = fourthCellY + largeHorizontalCellHeight + layout.contentPadding.vertical
                         expect(layout.contentSize) == CGSize(width: frame.size.width, height: height)
                     }
                 }
@@ -105,7 +103,7 @@ class FacebookLayoutSpec: QuickSpec {
     }
 }
 
-class FacebookLayoutMock: FacebookLayout {
+class FlickrLayoutMock: FlickrLayout {
     var calledFunctions = [String]()
 
     override func addAttributesForSupplementaryView(ofKind kind: String, section: Int, yOffset: inout CGFloat) {

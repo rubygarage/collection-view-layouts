@@ -48,7 +48,7 @@ class CollectionViewProvider: NSObject, UICollectionViewDataSource {
             }
 
             return headerView
-        } else if kind == UICollectionView.elementKindSectionFooter {
+        } else {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "FooterViewIdentifier",
                                                                              for: indexPath)
@@ -60,7 +60,5 @@ class CollectionViewProvider: NSObject, UICollectionViewDataSource {
 
             return footerView
         }
-
-        fatalError("Kind must be header or footer")
     }
 }
