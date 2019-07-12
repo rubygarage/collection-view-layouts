@@ -22,6 +22,8 @@
 		0B033CBE22BCC68E0078081A /* FlipboardLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B033CBC22BCC6690078081A /* FlipboardLayoutSpec.swift */; };
 		0B033CC322BCF85B0078081A /* InstagramLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B033CC022BCF1F90078081A /* InstagramLayoutSpec.swift */; };
 		0B07A5552272E33500E16466 /* PickerViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B07A5542272E33500E16466 /* PickerViewProvider.swift */; };
+		0BA8970F22D86ECF00B7F810 /* PinterestLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8970D22D86EB000B7F810 /* PinterestLayoutSpec.swift */; };
+		0BA8971222D8958B00B7F810 /* TagsLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8971122D8958B00B7F810 /* TagsLayoutSpec.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -59,6 +61,8 @@
 		0B033CBC22BCC6690078081A /* FlipboardLayoutSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipboardLayoutSpec.swift; sourceTree = "<group>"; };
 		0B033CC022BCF1F90078081A /* InstagramLayoutSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLayoutSpec.swift; sourceTree = "<group>"; };
 		0B07A5542272E33500E16466 /* PickerViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewProvider.swift; sourceTree = "<group>"; };
+		0BA8970D22D86EB000B7F810 /* PinterestLayoutSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayoutSpec.swift; sourceTree = "<group>"; };
+		0BA8971122D8958B00B7F810 /* TagsLayoutSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsLayoutSpec.swift; sourceTree = "<group>"; };
 		173055EDF02337440A240B65 /* Pods_collection_view_layouts_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_collection_view_layouts_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2590D01A5FC7198447B9AE48 /* Pods-collection-view-layouts_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-collection-view-layouts_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-collection-view-layouts_Tests/Pods-collection-view-layouts_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5194DE7274F0BB97C38DF844 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -164,6 +168,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0BA8970C22D86E9E00B7F810 /* PinterestLayout */ = {
+			isa = PBXGroup;
+			children = (
+				0BA8970D22D86EB000B7F810 /* PinterestLayoutSpec.swift */,
+			);
+			name = PinterestLayout;
+			sourceTree = "<group>";
+		};
+		0BA8971022D8956F00B7F810 /* TagsLayout */ = {
+			isa = PBXGroup;
+			children = (
+				0BA8971122D8958B00B7F810 /* TagsLayoutSpec.swift */,
+			);
+			name = TagsLayout;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +239,8 @@
 				0B033CB822BCBF1C0078081A /* FlickrLayout */,
 				0B033CBB22BCC6590078081A /* FlipboardLayout */,
 				0B033CBF22BCF1ED0078081A /* InstagramLayout */,
+				0BA8970C22D86E9E00B7F810 /* PinterestLayout */,
+				0BA8971022D8956F00B7F810 /* TagsLayout */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -488,9 +510,11 @@
 				8C64D35B20723E090049AD45 /* Font.swift in Sources */,
 				8C64D35C20723E170049AD45 /* Color.swift in Sources */,
 				0B033CB422B28ABB0078081A /* HeaderView.swift in Sources */,
+				0BA8971222D8958B00B7F810 /* TagsLayoutSpec.swift in Sources */,
 				0B033CC322BCF85B0078081A /* InstagramLayoutSpec.swift in Sources */,
 				0B033CB522B28ABB0078081A /* FooterView.swift in Sources */,
 				0B033CA922B23FA60078081A /* ItemsPaddingSpec.swift in Sources */,
+				0BA8970F22D86ECF00B7F810 /* PinterestLayoutSpec.swift in Sources */,
 				0B033CB222B27C6D0078081A /* FacebookLayoutSpec.swift in Sources */,
 				0B033CBE22BCC68E0078081A /* FlipboardLayoutSpec.swift in Sources */,
 				0B033CB322B287660078081A /* CollectionViewProvider.swift in Sources */,

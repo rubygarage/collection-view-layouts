@@ -20,6 +20,11 @@ class InstagramLayoutSpec: QuickSpec {
                 layout = InstagramLayoutMock()
             }
 
+            it("should have valid stored properties") {
+                expect(layout.gridType).to(beAKindOf(GridType.self))
+                expect(layout.gridType) == .regularPreviewCell
+            }
+
             describe("should calculate frames") {
                 context("when layout does not have collection view") {
                     it("can not add attributes") {

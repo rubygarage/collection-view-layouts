@@ -94,7 +94,7 @@ public class TagsLayout: ContentAlignableLayout {
                                               yOffset: &yOffset)
         }
 
-        contentSize.height = yOffset + contentPadding.vertical
+        contentSize.height = yOffset - cellsPadding.vertical + contentPadding.vertical
     }
 
     func calculateHorizontalScrollDirection() {
@@ -153,6 +153,6 @@ public class TagsLayout: ContentAlignableLayout {
             }
         }
 
-        contentSize.width = xOffset + contentPadding.horizontal
+        contentSize.width = xOffset - cellsPadding.horizontal + contentPadding.horizontal
     }
 }
