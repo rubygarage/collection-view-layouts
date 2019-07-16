@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'collection-view-layouts'
-  s.version          = '0.1.2'
-  s.summary          = 'Collection view custom flow layouts'
-  s.description      = 'A set of custom collection view flow layouts.'
+  s.version          = '0.2.0'
+  s.summary          = 'Collection view custom layouts'
+  s.description      = 'A set of custom collection view layouts.'
 
   s.homepage         = 'https://github.com/rubygarage/collection-view-layouts'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -26,36 +26,36 @@ Pod::Spec.new do |s|
 
   s.subspec 'TagsLayout' do |tags_layout|
     tags_layout.dependency 'collection-view-layouts/Core'
-    tags_layout.source_files = 'collection-view-layouts/Classes/TagsStyleFlowLayout/*.swift'
+    tags_layout.source_files = 'collection-view-layouts/Classes/TagsLayout/*.swift'
   end
 
   s.subspec 'PinterestLayout' do |pinterest_layout|
     pinterest_layout.dependency 'collection-view-layouts/Core'
-    pinterest_layout.source_files = 'collection-view-layouts/Classes/PinterestStyleFlowLayout/*.swift'
+    pinterest_layout.source_files = 'collection-view-layouts/Classes/PinterestLayout/*.swift'
   end
 
   s.subspec 'Px500Layout' do |px500_layout|
     px500_layout.dependency 'collection-view-layouts/Core'
-    px500_layout.source_files = 'collection-view-layouts/Classes/Px500StyleFlowLayout/*.swift'
+    px500_layout.source_files = 'collection-view-layouts/Classes/Px500Layout/*.swift'
   end
 
   s.subspec 'InstagramLayout' do |instagram_layout|
     instagram_layout.dependency 'collection-view-layouts/Core'
-    instagram_layout.source_files = 'collection-view-layouts/Classes/InstagramStyleFlowLayout/*.swift'
+    instagram_layout.source_files = 'collection-view-layouts/Classes/InstagramLayout/*.swift'
   end
 
   s.subspec 'FlipboardLayout' do |flipboard_layout|
     flipboard_layout.dependency 'collection-view-layouts/Core'
-    flipboard_layout.source_files = 'collection-view-layouts/Classes/FlipboardStyleFlowLayout/*.swift'
+    flipboard_layout.source_files = 'collection-view-layouts/Classes/FlipboardLayout/*.swift'
   end
 
   s.subspec 'FacebookLayout' do |facebook_layout|
     facebook_layout.dependency 'collection-view-layouts/Core'
-    facebook_layout.source_files = 'collection-view-layouts/Classes/FacebookStyleFlowLayout/*.swift'
+    facebook_layout.source_files = 'collection-view-layouts/Classes/FacebookLayout/*.swift'
   end
 
   s.subspec 'FlickrLayout' do |flickr_layout|
     flickr_layout.dependency 'collection-view-layouts/Core'
-    flickr_layout.source_files = 'collection-view-layouts/Classes/FlickrStyleFlowLayout/*.swift'
+    flickr_layout.source_files = 'collection-view-layouts/Classes/FlickrLayout/*.swift'
   end
 end

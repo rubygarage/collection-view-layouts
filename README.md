@@ -3,9 +3,9 @@
 
 # About
 
-Collection View Layouts is a set of custom flow layouts for iOS which imitate general data grid approaches for mobile apps.
+Collection View Layouts is a set of custom layouts for iOS which imitate general data grid approaches for mobile apps.
 
-# Flow types
+# Layout types
 
 <table>
   <tbody>
@@ -35,10 +35,10 @@ Collection View Layouts is a set of custom flow layouts for iOS which imitate ge
 </table>
 
 ## Overview
-* 7 popular flow-layouts for iOS collection view
+* 7 popular layouts for iOS collection view
 * Tags and Flipboard layouts support left and right content align
 * 500px has custom cells layout configuration
-* Three modes for instagram layout (default grid mode, one preview cell, regular preview cell)
+* Three modes for Instagram layout (default grid mode, one preview cell, regular preview cell)
 * Each layout can be configured with content and cells paddings separately
 * Tests coverage more than 90%
 
@@ -60,8 +60,8 @@ pod 'collection-view-layouts/FlickrLayout'
 
 ## Requirements
 
-iOS: 9.0+  
-Swift: 4.1  
+iOS: 11.0+  
+Swift: 5.0  
 CocoaPods: for iOS  
 
 ## Example
@@ -69,24 +69,23 @@ To run the example project, clone the repo, and run pod install from the Example
 
 ## Usage
 
-Configuration of custom flow layouts is pretty easy:
+Configuration of custom layouts is pretty easy:
 
 ```swift
-var contentFlowLayout: ContentDynamicLayout = TagsStyleFlowLayout()
+var layout: BaseLayout = TagsLayout()
 
-contentFlowLayout?.delegate = self
-contentFlowLayout?.contentPadding = ItemsPadding(horizontal: 10, vertical: 10)
-contentFlowLayout?.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
-contentFlowLayout?.contentAlign = .left
+layout.delegate = self
+layout.delegate = ItemsPadding(horizontal: 10, vertical: 10)
+layout.cellsPadding = ItemsPadding(horizontal: 8, vertical: 8)
 
-collectionView.collectionViewLayout = contentFlowLayout!
+collectionView.collectionViewLayout = layout
 collectionView.reloadData()
 ```
 
-Also, you have to implement ContentDynamicLayoutDelegate protocol:
+Also, you have to implement LayoutDelegate protocol:
 
 ```swift
-public protocol ContentDynamicLayoutDelegate: class {
+public protocol LayoutDelegate: class {
     func cellSize(indexPath: IndexPath) -> CGSize
 }
 
