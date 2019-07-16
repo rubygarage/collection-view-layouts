@@ -78,7 +78,7 @@ public class Px500Layout: BaseLayout {
                                               yOffset: &yOffset)
         }
 
-        contentSize.height = yOffset + contentPadding.vertical
+        contentSize.height = yOffset - cellsPadding.vertical + contentPadding.vertical
     }
 
     // MARK: - Helpers
@@ -88,7 +88,7 @@ public class Px500Layout: BaseLayout {
             layoutConfiguration.insert([], at: section)
         }
 
-        if layoutConfiguration[section].count != itemsCount {
+        if layoutConfiguration[section].reduce(0, +) != itemsCount {
             layoutConfiguration[section] = []
         } else if let min = layoutConfiguration[section].min(), let max = layoutConfiguration[section].max() {
             if min < minCellsInRow.rawValue || max > maxCellsInRow.rawValue {
@@ -116,15 +116,13 @@ public class Px500Layout: BaseLayout {
     }
     
     private func convertToRelativeCellsWidths(_ cellsSizes: [CGSize]) -> [CGFloat] {
-        if cellsSizes.count == 1 {
-            return [contentWidthWithoutPadding]
-        } else if cellsSizes.count == 2 {
+        if cellsSizes.count == 2 {
             return calculateTwoCells(cellsSizes)
         } else if cellsSizes.count == 3 {
             return calculateThreeCells(cellsSizes)
-        } else {
-            return [CGFloat(0)]
         }
+
+        return [contentWidthWithoutPadding]
     }
     
     private func calculateTwoCells(_ cellsSizes: [CGSize]) -> [CGFloat] {
@@ -137,11 +135,11 @@ public class Px500Layout: BaseLayout {
             let firstRelative = halfContentWidth * coefficient
             let secondRelative = contentWidthWithoutPadding - firstRelative
             return [firstRelative - cellsPadding.horizontal, secondRelative]
-        } else {
-            let firstRelative = halfContentWidth / coefficient
-            let secondRelative = contentWidthWithoutPadding - firstRelative
-            return [secondRelative - cellsPadding.horizontal, firstRelative]
         }
+
+        let firstRelative = halfContentWidth / coefficient
+        let secondRelative = contentWidthWithoutPadding - firstRelative
+        return [secondRelative - cellsPadding.horizontal, firstRelative]
     }
     
     private func calculateThreeCells(_ cellsSizes: [CGSize]) -> [CGFloat] {
@@ -166,8 +164,8 @@ public class Px500Layout: BaseLayout {
             return [notCenterMinCoef, notCenterMaxCoef, notCenterMaxCoef]
         } else if isSecondPortrait {
             return [centerMaxCoef, centerMinCoef, centerMaxCoef]
-        } else {
-            return [notCenterMaxCoef, notCenterMaxCoef, notCenterMinCoef]
         }
+
+        return [notCenterMaxCoef, notCenterMaxCoef, notCenterMinCoef]
     }
 }
