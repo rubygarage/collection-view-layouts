@@ -14,7 +14,7 @@ PODS:
     - collection-view-layouts/Core
   - collection-view-layouts/TagsLayout (0.2.0):
     - collection-view-layouts/Core
-  - Nimble (8.0.1)
+  - Nimble (8.0.2)
   - Quick (2.1.0)
 
 DEPENDENCIES:
@@ -26,8 +26,8 @@ DEPENDENCIES:
   - collection-view-layouts/PinterestLayout (from `../`)
   - collection-view-layouts/Px500Layout (from `../`)
   - collection-view-layouts/TagsLayout (from `../`)
-  - Nimble (~> 8.0.1)
-  - Quick (~> 2.1.0)
+  - Nimble (= 8.0.2)
+  - Quick (= 2.1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -40,9 +40,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   collection-view-layouts: f3370a02ca766157860a79ba931cebd6f71c32c2
-  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
 
-PODFILE CHECKSUM: 6142bc3f28b8e69c4de8b6faca8f87c8c3c6459c
+PODFILE CHECKSUM: 7eed666504635eb064559cfed86f85daa7df14cb
 
 COCOAPODS: 1.7.1
