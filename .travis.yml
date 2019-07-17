@@ -5,6 +5,7 @@ cache: cocoapods
 podfile: Example/Podfile
 
 before_install:
+- gem install cocoapods -v '1.7.1'
 - pod install --project-directory=Example
 
 script:
