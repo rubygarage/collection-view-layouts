@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'collection-view-layouts'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Collection view custom layouts'
   s.description      = 'A set of custom collection view layouts.'
 
@@ -17,7 +17,8 @@ Pod::Spec.new do |s|
   s.author           = { 'sergey.afanasiev' => 'sergey.afanasiev@rubygarage.org' }
   s.source           = { :git => 'https://github.com/rubygarage/collection-view-layouts.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
+  s.swift_versions = ['5.0']
     
   s.subspec 'Core' do |core|
     core.source_files = 'collection-view-layouts/Classes/Core/*.swift'
