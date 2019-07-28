@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.description      = 'A set of custom collection view layouts.'
 
   s.homepage         = 'https://github.com/rubygarage/collection-view-layouts'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author           = { 'sergey.afanasiev' => 'sergey.afanasiev@rubygarage.org' }
   s.source           = { :git => 'https://github.com/rubygarage/collection-view-layouts.git', :tag => s.version.to_s }
 
