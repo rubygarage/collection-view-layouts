@@ -1,18 +1,18 @@
 PODS:
-  - collection-view-layouts/Core (0.2.0)
-  - collection-view-layouts/FacebookLayout (0.2.0):
+  - collection-view-layouts/Core (0.2.2)
+  - collection-view-layouts/FacebookLayout (0.2.2):
     - collection-view-layouts/Core
-  - collection-view-layouts/FlickrLayout (0.2.0):
+  - collection-view-layouts/FlickrLayout (0.2.2):
     - collection-view-layouts/Core
-  - collection-view-layouts/FlipboardLayout (0.2.0):
+  - collection-view-layouts/FlipboardLayout (0.2.2):
     - collection-view-layouts/Core
-  - collection-view-layouts/InstagramLayout (0.2.0):
+  - collection-view-layouts/InstagramLayout (0.2.2):
     - collection-view-layouts/Core
-  - collection-view-layouts/PinterestLayout (0.2.0):
+  - collection-view-layouts/PinterestLayout (0.2.2):
     - collection-view-layouts/Core
-  - collection-view-layouts/Px500Layout (0.2.0):
+  - collection-view-layouts/Px500Layout (0.2.2):
     - collection-view-layouts/Core
-  - collection-view-layouts/TagsLayout (0.2.0):
+  - collection-view-layouts/TagsLayout (0.2.2):
     - collection-view-layouts/Core
   - Nimble (8.0.2)
   - Quick (2.1.0)
@@ -39,10 +39,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  collection-view-layouts: f3370a02ca766157860a79ba931cebd6f71c32c2
+  collection-view-layouts: bed793b792c8394d0a0b69a1b02e7a775c0bceeb
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
 
 PODFILE CHECKSUM: 7eed666504635eb064559cfed86f85daa7df14cb
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.7.2
