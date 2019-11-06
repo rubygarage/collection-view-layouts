@@ -30,7 +30,7 @@ DEPENDENCIES:
   - Quick (= 2.1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://cdn.cocoapods.org/:
     - Nimble
     - Quick
 
@@ -39,10 +39,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  collection-view-layouts: bed793b792c8394d0a0b69a1b02e7a775c0bceeb
+  collection-view-layouts: 023a660cdf4e1340980b568256ae085014166eaa
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
 
-PODFILE CHECKSUM: 7eed666504635eb064559cfed86f85daa7df14cb
+PODFILE CHECKSUM: be8f7d6538478fc6ec254c5852fa5ff5a3bb6b8a
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.4

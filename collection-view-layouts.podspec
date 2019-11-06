@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author           = { 'sergey.afanasiev' => 'sergey.afanasiev@rubygarage.org' }
   s.source           = { :git => 'https://github.com/rubygarage/collection-view-layouts.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '8.0'
   s.swift_versions = ['5.0']
     
   s.subspec 'Core' do |core|

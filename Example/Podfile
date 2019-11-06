@@ -1,6 +1,8 @@
 use_frameworks!
 
 target 'collection-view-layouts_Example' do
+    platform :ios, '8.0'
+
     pod 'collection-view-layouts/Core', :path => '../'
     pod 'collection-view-layouts/TagsLayout', :path => '../'
     pod 'collection-view-layouts/PinterestLayout', :path => '../'
